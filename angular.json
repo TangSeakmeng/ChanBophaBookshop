@@ -17,6 +17,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "firebase/app",
+              "@firebase/app",
+              "@firebase/component",
+              "@firebase/firestore",
+              "@firebase/auth",
+              "@firebase/util",
+              "@angular/fire/firestore"
+            ],
             "outputPath": "dist/OnlineStore",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,9 +37,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.snow.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/quill/dist/quill.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -121,8 +137,16 @@
               "devServerTarget": "OnlineStore:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "OnlineStore"
+    }
+  },
+  "defaultProject": "OnlineStore",
+  "cli": {
+    "analytics": "a94e0a12-8acb-44a6-90f3-09800bf47252"
+  }
 }

@@ -1,0 +1,90 @@
+<div id="productContainer" *mobxAutorun>
+  <div class="productHeader">
+    <h1>Products</h1>
+    <div class="groupButtons">
+      <button mat-raised-button class="navyBlue-button" (click)="OpenAddProductDialog()" >
+        <mat-icon>add</mat-icon>
+        <span>Add Product</span>
+      </button>
+      <button mat-raised-button class="navyBlue-button" [routerLink]="['/product-management/products-by-category']">
+        <mat-icon>add</mat-icon>
+        <span>Add Product by Category</span>
+      </button>
+    </div>
+  </div>
+
+  <ng-container>
+    <div class="scrollable-table" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500">
+        <table class="table-wrapper" #printtable id="printtable">
+            <thead class="table-header">
+                <tr class="table-row">
+                    <th class="table-col">No</th>
+                    <th class="table-col">ItemCode</th>
+                    <th class="table-col">Image</th>
+                    <th class="table-col">Name</th>
+                    <th class="table-col">Color</th>
+                    <th class="table-col">Category</th>
+                    <th class="table-col">Brand</th>
+                    <!-- <th class="table-col">Created At</th>
+                    <th class="table-col">Updated At</th> -->
+                    <th class="table-col"></th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr *ngFor="let item of this.productStore.products; let i=index">
+                    <td class="table-col">{{i + 1}}</td>
+                    <td class="table-col" [routerLink]="['/product-management/product-detail/' + item.key ]">{{item.itemCode}}</td>
+                    <td class="table-col" [routerLink]="['/product-management/product-detail/' + item.key ]">
+                      <img *ngIf="item.images.length > 0" src="{{item.images[0].image}}" [ngStyle]="{'height': '38px'}">
+                    </td>
+                    <td class="table-col" [routerLink]="['/product-management/product-detail/' + item.key ]">{{item.name}}</td>
+                    <td class="table-col">{{item.color}}</td>
+                    <td class="table-col">{{item.category.name}}</td>
+                    <td class="table-col">{{item.brand.name}}</td>
+                    <!-- <td class="table-col">{{dateFormat.formatDate(item.createdAt)}}</td>
+                    <td class="table-col">{{dateFormat.formatDate(item.updatedAt)}}</td> -->
+
+                    <td>
+                      <div class="rowOptionAction">
+                        <button mat-menu-item (click)="editProduct(item)">
+                          <mat-icon>edit</mat-icon>
+                          <span>Edit</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteProduct(item)">
+                          <mat-icon>delete</mat-icon>
+                          <span>Delete</span>
+                        </button>
+                      </div>
+                    </td>
+
+                    <!-- <td class="table-col">
+                      <a [routerLink]="['/product-management/product-detail/' + item.id ]">
+                        <button mat-menu-item>
+                          <mat-icon>more</mat-icon>
+                          <span>View</span>
+                        </button>
+                      </a>
+                    </td> -->
+
+                    <!-- <td class="table-col center">
+                      <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon mat-icon-button>more_vert</mat-icon>
+                      </button>
+
+                      <mat-menu #menu="matMenu" class="optionEditDelete">
+                        <button mat-menu-item (click)="editProduct(item)">
+                          <mat-icon>edit</mat-icon>
+                          <span>Edit</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteProduct(item)">
+                          <mat-icon>delete</mat-icon>
+                          <span>Delete</span>
+                        </button>
+                      </mat-menu>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </ng-container>
+</div>

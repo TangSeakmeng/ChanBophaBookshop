@@ -1,0 +1,22 @@
+.headerContainer {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: calc(100% - 280px);
+  background-color: rgb(241, 241, 241);
+
+  div {
+    padding: 10px;
+
+    .searchZone {
+      padding: 0;
+    }
+  }
+
+  .leftside-tool {
+    display: flex;
+  }
+}

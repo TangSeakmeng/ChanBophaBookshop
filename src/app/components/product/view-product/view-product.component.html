@@ -1,0 +1,20 @@
+<div class="productDetailContainer">
+  <div class="header">
+    <h1>Product Details</h1>
+    <div class="header__buttons">
+      <button mat-raised-button color="primary" (click)="openEditProductDialog()">Edit</button>
+      <button mat-raised-button color="warn" (click)="deleteProduct()">Delete</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <mat-tab-group>
+      <mat-tab label="Product Details">
+        <app-product-details [product_data]="this.productStore.product" [slider_images]="this.productStore.product?.images"></app-product-details>
+      </mat-tab>
+      <mat-tab label="Color Collection">
+        <app-color-collection [product_data]="this.productStore.product"></app-color-collection>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

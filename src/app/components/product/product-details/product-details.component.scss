@@ -1,0 +1,45 @@
+.productDetailContainer {
+  padding-top: 20px;
+
+  .colorSampleContainer {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 0;
+      margin-right: 10px;
+    }
+
+    .colorSample {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 200px;
+      height: 40px;
+      border: 1px solid rgb(230, 230, 230);
+    }
+  }
+
+  .ImagePreviewContainer {
+    padding: 20px;
+    background-color: rgb(231, 231, 231);
+
+    .imagePreview {
+      display: flex;
+      overflow-x: auto;
+
+      div {
+
+        img {
+          height: 200px;
+          margin-right: 20px;
+        }
+      }
+    }
+
+    .imagePreview::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<div class="headerContainer">
+
+  <div class="leftside-tool">
+    <div class="searchZone">
+      <button mat-button>
+        <span class="material-icons"> search </span>
+      </button>
+      <mat-form-field appearance="legacy">
+        <input matInput placeholder="Search">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="rightside-tool">
+    <div class="nav-item-link" [matMenuTriggerFor]="userMenu" [ngStyle]="{'z-index': '120'}">
+      <div class="avatar">
+        <!-- <img src="https://firebasestorage.googleapis.com/v0/b/sysanotta.appspot.com/o/no_image.svg?alt=media&token=f25af902-6c62-47e6-bdf3-48e3b0c6fe8c"
+            alt="user"> -->
+        <button mat-button>
+          <span class="material-icons"> account_circle </span>
+        </button>
+      </div>
+    </div>
+
+    <mat-menu #userMenu="matMenu" class="cs-matmenu">
+      <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <!-- <span>{{auth?.user?.displayName}}</span> -->
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="changePassword()">
+          <mat-icon>verified_user</mat-icon>
+          <span>Change password</span>
+      </button>
+      <button mat-menu-item (click)="onLogOut()">
+          <mat-icon>lock_open</mat-icon>
+          <span>Sign Out</span>
+      </button>
+    </mat-menu>
+  </div>
+
+</div>

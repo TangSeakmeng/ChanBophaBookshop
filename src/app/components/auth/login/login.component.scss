@@ -1,0 +1,45 @@
+.loginPanel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  // background-image: linear-gradient( 89.2deg,  rgba(191,241,236,1) 22.3%, rgba(109,192,236,1) 84.1% );
+
+  background-image: url('/assets/images/background/2069552.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .loginFormContainer {
+    width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+
+    img {
+      width: 65%;
+    }
+
+    .loginForm {
+      width: 80%;
+      margin: 0 auto;
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      button {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        margin-top: 20px;
+      }
+    }
+  }
+}

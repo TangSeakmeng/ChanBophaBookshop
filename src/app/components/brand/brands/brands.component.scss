@@ -1,0 +1,35 @@
+#brandContainer {
+  width: 100%;
+  padding: 0px 30px;
+  margin-top: 20px;
+
+  .brandHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+      margin: 0;
+    }
+
+    button {
+      padding-left: 0;
+    }
+
+    button mat-icon {
+      background-color: #123764;
+      padding: 7px;
+      border-radius: 3px;
+      box-sizing: content-box;
+      margin-right: 10px;
+    }
+  }
+
+  tr .actionButtons {
+    display: none;
+  }
+
+  tr:hover .actionButtons {
+    display: block;
+  }
+}

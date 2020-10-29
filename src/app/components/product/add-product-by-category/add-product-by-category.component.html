@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Add {{this.data.name}}</h1>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="addProductForm" class="addBrandForm" (ngSubmit)="onSubmit(addProductForm.value)">
+    <mat-form-field appearance="outline">
+      <mat-label>Item Code</mat-label>
+      <input matInput placeholder="Item Code" formControlName="itemCode" type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="name" type="text">
+    </mat-form-field>
+
+    <label>Description</label><br><br>
+    <p-editor [style]="{'height':'220px'}" formControlName="description"></p-editor><br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Color</mat-label>
+      <input matInput placeholder="Color" formControlName="color" type="text">
+    </mat-form-field>
+
+    <!-- <label>Color</label><br><br>
+    <input [(colorPicker)]="color" [style.background]="color" class="colorPicker" formControlName="color"/><br><br> -->
+
+    <mat-form-field appearance="outline">
+      <mat-label>Brand</mat-label>
+      <mat-select formControlName="brand">
+        <mat-option *ngFor="let item of this.brandStore.brands" [value]="this.brandMapping.MapBrandObj(item)">
+          {{item.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <label>Upload Image</label><br><br>
+    <input type="file" formControlName="image" (change)="uploadFileChange($event)"><br><br> -->
+
+    <p-fileUpload class="imageSelection" #fileUpload (onSelect)="uploadFileChange($event)"
+      multiple="multiple" accept="image/*" chooseLabel="Upload Images">
+      <ng-template pTemplate="content">
+      </ng-template>
+    </p-fileUpload>
+
+    <button mat-flat-button class="navyBlue-button" type="submit">Add</button>
+    <button mat-flat-button class="navyBlue-button" type="reset">Reset</button>
+    <button mat-flat-button class="navyBlue-button" mat-dialog-close type="button">Close</button>
+  </form>
+</mat-dialog-content>

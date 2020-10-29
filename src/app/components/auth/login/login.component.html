@@ -1,0 +1,28 @@
+<div class="loginPanel">
+  <div class="loginFormContainer">
+    <img src="/assets/images/logos/logo 2.jpg">
+
+    <div class="loginForm">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" [type]='email' formControlName="email" [formControl]="email" required/>
+          <!-- <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" [formControl]="password" required/>
+          <!-- <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error> -->
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary">LogIn</button>
+      </form>
+
+      <p>No Account? Please contact administrator!</p>
+    </div>
+  </div>
+</div>

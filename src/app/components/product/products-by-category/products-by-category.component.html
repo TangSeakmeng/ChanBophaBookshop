@@ -1,0 +1,86 @@
+<div id="productContainer" *mobxAutorun>
+  <div class="productHeader">
+    <div [ngStyle]="{'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}">
+      <h1>Products</h1>
+      <h4>by Category</h4>
+    </div>
+    <div class="groupButtons">
+      <button mat-raised-button class="navyBlue-button" (click)="openAddProductByCategoryDialog()">
+        <mat-icon>add</mat-icon>
+        <span>Add {{buttonText}}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="productBody">
+    <mat-form-field appearance="outline" [ngStyle]="{'margin-top': '40px'}">
+      <mat-label>Category</mat-label>
+      <mat-select (selectionChange)="onSelectCategoryChanged($event)" [(value)]="selectedCategory" [compareWith]="compareFn">
+        <mat-optgroup label="Main Category">
+          <mat-option *ngFor="let item of this.categoryStore.categories" [value]="this.categoryMapping.MapCategoryObj(item)">
+            {{item.name}}
+          </mat-option>
+        </mat-optgroup>
+
+        <mat-optgroup label="SubCategory">
+          <mat-option *ngFor="let item of this.subCategoryStore.subCategories" [value]="this.categoryMapping.MapSubCategoryObj(item)">
+            {{item.name}}
+          </mat-option>
+        </mat-optgroup>
+
+        <mat-optgroup label="More SubCategory">
+          <mat-option *ngFor="let item of this.subSubCategoryStore.subSubCategories" [value]="this.categoryMapping.MapSubSubCategoryObj(item)">
+            {{item.name}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="scrollable-table" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500">
+      <table class="table-wrapper" #printtable id="printtable">
+          <thead class="table-header">
+              <tr class="table-row">
+                  <th class="table-col">No</th>
+                  <th class="table-col">ItemCode</th>
+                  <th class="table-col">Image</th>
+                  <th class="table-col">Name</th>
+                  <th class="table-col">Color</th>
+                  <th class="table-col">Category</th>
+                  <th class="table-col">Brand</th>
+                  <!-- <th class="table-col">Created At</th>
+                  <th class="table-col">Updated At</th> -->
+                  <th class="table-col"></th>
+              </tr>
+          </thead>
+          <tbody class="table-body">
+            <tr *ngFor="let item of this.productStore.products; let i=index">
+                  <td class="table-col">{{i + 1}}</td>
+                  <td class="table-col" [routerLink]="['/product-management/product-detail/' + item.key ]">{{item.itemCode}}</td>
+                  <td class="table-col" [routerLink]="['/product-management/product-detail/' + item.key ]">
+                    <img *ngIf="item.images.length > 0" src="{{item.images[0].image}}" [ngStyle]="{'height': '38px'}">
+                  </td>
+                  <td class="table-col" [routerLink]="['/product-management/product-detail/' + item.key ]">{{item.name}}</td>
+                  <td class="table-col">{{item.color}}</td>
+                  <td class="table-col">{{item.category.name}}</td>
+                  <td class="table-col">{{item.brand.name}}</td>
+                  <!-- <td class="table-col">{{dateFormat.formatDate(item.createdAt)}}</td>
+                  <td class="table-col">{{dateFormat.formatDate(item.updatedAt)}}</td> -->
+
+                  <td>
+                    <div class="rowOptionAction">
+                      <button mat-menu-item (click)="editProduct(item)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                      <button mat-menu-item (click)="deleteProduct(item)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                    </div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>

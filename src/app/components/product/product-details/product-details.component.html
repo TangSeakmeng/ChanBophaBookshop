@@ -1,0 +1,26 @@
+<div class="productDetailContainer">
+  <h1>{{this.product_data?.name}}</h1>
+  <p>Item Code: {{this.product_data?.itemCode}} Brand: {{this.product_data?.brand.name}}, Category: {{this.product_data?.category.name}}</p>
+  <p>Created At: {{formatDate(this.product_data?.createdAt)}}, Updated At: {{formatDate(this.product_data?.updatedAt)}}</p>
+
+  <!-- <br>
+  <div class="colorSampleContainer">
+    <p> Color: </p>
+    <div class="colorSample" [ngStyle]="{'background-color': this.product_data?.color}">
+      <p>{{this.product_data?.color}}</p>
+    </div>
+  </div> -->
+  <!-- <br> -->
+
+  <p>Product Description:</p>
+  <p [innerHTML]="this.product_data?.description"></p>
+
+  <div class="ImagePreviewContainer">
+    <p>Product Images:</p>
+    <div class="imagePreview">
+      <div *ngFor="let image of this.product_data?.images">
+        <img src="{{image.image}}">
+      </div>
+    </div>
+  </div>
+</div>

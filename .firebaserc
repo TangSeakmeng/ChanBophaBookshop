@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "onlinestore-25919": {
+      "hosting": {
+        "OnlineStore": [
+          "onlinestore-25919"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "onlinestore-25919"
+  }
+}

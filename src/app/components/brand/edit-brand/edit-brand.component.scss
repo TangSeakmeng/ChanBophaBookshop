@@ -1,0 +1,19 @@
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-right: 20px;
+}
+
+#imageContainer {
+  width: 250px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  text-align: center;
+
+  img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,19 @@
+<form [formGroup]="editBrandForm" class="editBrandForm" (ngSubmit)="onSubmit(editBrandForm.value)">
+  <h1>Edit Brand</h1>
+
+  <mat-form-field appearance="outline" id="txtName">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" type="text">
+  </mat-form-field>
+
+  <h4>Image</h4>
+  <div id="imageContainer">
+    <img src={{this.brandStore.brand?.image}}>
+  </div>
+
+  <label>Upload Image</label><br><br>
+  <input type="file" (change)="uploadFileChange($event)"><br><br>
+
+  <button mat-flat-button color="primary" type="submit">Edit</button>
+  <button mat-flat-button color="warn" type="reset">Cancel</button>
+</form>

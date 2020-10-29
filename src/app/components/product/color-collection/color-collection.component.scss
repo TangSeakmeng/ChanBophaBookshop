@@ -1,0 +1,57 @@
+.colorCollectionContainer {
+  padding-top: 20px;
+  overflow-x: hidden;
+
+  .contentContainer {
+    width: 100%;
+    display: flex;
+  }
+
+  .contentContainer form, .contentContainer div {
+    width: 50%;
+    padding-right: 8px;
+  }
+
+  .contentContainer form {
+    padding-right: 50px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0px 0px 10px 1px #b3b3b3;
+  }
+
+  table, th, td {
+    border-bottom: 1px solid rgb(199, 199, 199);
+    padding: 10px;
+    text-align: left;
+  }
+
+  tr td .actionButtons {
+    display: none;
+  }
+
+  tr:hover td .actionButtons {
+    display: block;
+  }
+
+  .demoColor {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 10px;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button {
+    margin-right: 10px;
+
+    mat-icon {
+      padding: 0;
+    }
+  }
+}

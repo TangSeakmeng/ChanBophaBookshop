@@ -1,0 +1,94 @@
+<h1 mat-dialog-title>Edit Product</h1>
+<mat-dialog-content class="mat-typography">
+  <mat-tab-group>
+    <mat-tab label="Product Information">
+      <ng-container>
+        <form [formGroup]="editProductForm" class="editProductForm" (ngSubmit)="onSubmit(editProductForm.value)">
+          <mat-form-field appearance="outline" [ngStyle]="{'margin-top': '20px'}">
+            <mat-label>Item Code</mat-label>
+            <input matInput placeholder="Item Code" formControlName="itemCode" type="text">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name" type="text">
+          </mat-form-field>
+
+          <label>Description</label><br><br>
+          <p-editor [(ngModel)]="text" [style]="{'height':'220px'}" formControlName="description"></p-editor><br>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Color</mat-label>
+            <input matInput placeholder="Color" formControlName="color" type="text">
+          </mat-form-field>
+
+          <!-- <label>Color</label><br><br>
+          <input [(colorPicker)]="color" [style.background]="color" class="colorPicker" formControlName="color"/><br><br> -->
+
+          <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" [compareWith]="compareFn">
+              <mat-optgroup label="Main Category">
+                <mat-option *ngFor="let item of this.categoryStore.categories" [value]="this.categoryMapping.MapCategoryObj(item)">
+                  {{item.name}}
+                </mat-option>
+              </mat-optgroup>
+
+              <mat-optgroup label="SubCategory">
+                <mat-option *ngFor="let item of this.subCategoryStore.subCategories" [value]="this.categoryMapping.MapSubCategoryObj(item)">
+                  {{item.name}}
+                </mat-option>
+              </mat-optgroup>
+
+              <mat-optgroup label="More SubCategory">
+                <mat-option *ngFor="let item of this.subSubCategoryStore.subSubCategories" [value]="this.categoryMapping.MapSubSubCategoryObj(item)">
+                  {{item.name}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Brand</mat-label>
+            <mat-select formControlName="brand" [compareWith]="compareFn">
+              <mat-option *ngFor="let item of this.brandStore.brands" [value]="this.brandMapping.MapBrandObj(item)">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <label>Uploaded Image</label><br>
+          <div class="Group_ImageContainer">
+            <ng-container *ngFor="let item of this.images" >
+              <div class="ImageContainer">
+                <img src="{{item.image}}"><br><br>
+                <button mat-raised-button color="warn" (click)="deleteImageFromGallery(item)" type="button">Warn</button>
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- <label>Upload Image</label><br><br>
+          <input type="file" formControlName="image" (change)="uploadFileChange($event)"><br><br> -->
+
+          <small>* Uploaded More Image to Add More Image.</small><br>
+          <p-fileUpload class="imageSelection" #fileUpload (onSelect)="uploadFileChange($event)"
+            multiple="multiple" accept="image/*" chooseLabel="Upload Images" showUploadButton=false cancelIcon="/assets/images/icons/cancel.png">
+            <ng-template pTemplate="content">
+            </ng-template>
+          </p-fileUpload>
+
+          <button mat-flat-button class="navyBlue-button" type="submit">Edit</button>
+          <button mat-flat-button class="navyBlue-button" color="primary" type="reset">Cancel</button>
+          <button mat-flat-button class="navyBlue-button" mat-dialog-close color="primary" type="button">Close</button>
+        </form>
+      </ng-container>
+    </mat-tab>
+
+    <mat-tab label="Color Collection">
+      <div [ngStyle]="{'width': '100%'}">
+        <app-color-collection [product_data]="this.data" [product_id]="this.data.key"></app-color-collection>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+
