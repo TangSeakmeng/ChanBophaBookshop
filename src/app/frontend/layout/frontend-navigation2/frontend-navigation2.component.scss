@@ -1,0 +1,41 @@
+@import '../../../../setting.scss';
+
+.navigationHeaderContainer {
+  width: 100%;
+  background-color: white;
+  padding: 10px 15%;
+  padding-bottom: 0px;
+  overflow: auto;
+
+  .navigationContainer {
+    width: calc(100% - 200px);
+
+    ul {
+
+      li {
+        list-style-type: none;
+        float: left;
+        padding: 10px 20px;
+      }
+
+      li:hover {
+        cursor: pointer;
+        color: black;
+        background-color: #ECECEC;
+      }
+
+      li:focus {
+        outline: none;
+        border: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+
+  .navigationHeaderContainer {
+    padding: 10px 8%;
+    padding-bottom: 0px;
+  }
+}

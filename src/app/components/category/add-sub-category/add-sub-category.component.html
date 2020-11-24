@@ -1,0 +1,13 @@
+<form [formGroup]="addCategoryForm" class="addCategoryForm" (ngSubmit)="onSubmit(addCategoryForm.value)">
+  <h1>Add Subcategory for {{this.data?.name}}</h1>
+
+  <mat-form-field appearance="outline" id="txtName">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" type="text" required>
+  </mat-form-field>
+
+  <div class="containerWithSpaceBetween">
+    <button mat-flat-button [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}" type="button" mat-dialog-close type="button">Close</button>
+    <button mat-flat-button color="primary" type="submit" [ngStyle]="{'margin': '0px'}">Add</button>
+  </div>
+</form>

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { ConfirmDialogModel_Class } from 'src/app/models/confirmDialogModel.model';
 import { DateFormatService } from 'src/app/services/data-manipulation/date-format.service';
 import { CategoryMappingService } from 'src/app/services/mapping/category-mapping.service';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { CategoryStore } from 'src/app/stores/category.store';
 import { ProductStore } from 'src/app/stores/product.store';
 import { SubCategoryStore } from 'src/app/stores/subcategory.store';
@@ -15,6 +19,7 @@ import { EditProductComponent } from '../edit-product/edit-product.component';
   styleUrls: ['./products-by-category.component.scss']
 })
 export class ProductsByCategoryComponent implements OnInit {
+  result;
   selectedCategory;
   buttonText = 'Product';
 
@@ -28,19 +33,36 @@ export class ProductsByCategoryComponent implements OnInit {
     public dateFormat: DateFormatService,
 
     private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    this.categoryStore.getCategories();
-    this.subCategoryStore.getCategories();
-    this.subSubCategoryStore.getCategories();
+    this.route.params.subscribe(param => {
+      if(param.id) {
+        const { id } = param;
+
+        this.subCategoryStore.getCategoryByKey(id);
+        this.selectedCategory = this.subCategoryStore.subCategory;
+        this.productStore.getProductByCategoryKey(id);
+      } else {
+        this.subCategoryStore.getCategories();
+        this.productStore.getProductByCategoryKey(this.subCategoryStore.subCategories[0].key)
+      }
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   openAddProductByCategoryDialog() {
-    if(this.selectedCategory) {
+    if(this.selectedCategory || this.subCategoryStore.subCategory) {
       this.dialog.open(AddProductByCategoryComponent,
         {
-          data: this.selectedCategory,
+          data: this.selectedCategory ? this.selectedCategory : this.subCategoryStore.subCategory
           // data:{ item: this.selectedCategory, },
         });
     }
@@ -62,10 +84,32 @@ export class ProductsByCategoryComponent implements OnInit {
     this.dialog.open(EditProductComponent, { width: '1000px', data });
   }
 
-  deleteProduct(data) {
-    let result = confirm('Are you sure that you want to delete this row?')
+  deleteProduct(product) {
+    this.confirmDialog(product);
+  }
 
-    if(result)
-      this.productStore.deleteProduct(data);
+  confirmDialog(value): void {
+    const message = `Are you sure that you want to delete this row?`;
+    const dialogData = new ConfirmDialogModel_Class("Delete Product", message);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
+
+      if(this.result) {
+        this.productStore.deleteProduct(value);
+        this.openSnackBar('Delete Successfully.', 'Close');
+      }
+
+      this.openSnackBar('Delete Denied.', 'Close');
+    });
+  }
+
+  publishedChanged(result, item) {
+    this.productStore.updateProductPublished(item, result);
   }
 }

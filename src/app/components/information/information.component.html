@@ -1,0 +1,35 @@
+<div id="InformationContainer" *mobxAutorun>
+  <div class="informationHeader">
+    <h1>Information</h1>
+  </div>
+
+  <div class="informationBody">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Tel</mat-label>
+        <input matInput placeholder="tel" (input)="telChanged($event.target.value)" [value]="this.informationStore.information[3]?.value">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="email" (input)="emailChanged($event.target.value)" [value]="this.informationStore.information[1]?.value">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Facebook Page</mat-label>
+        <input matInput placeholder="facebook page" (input)="facebookPageChanged($event.target.value)" [value]="this.informationStore.information[2]?.value">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="address" (input)="addressChanged($event.target.value)" [value]="this.informationStore.information[0]?.value">
+      </mat-form-field>
+    </p>
+  </div>
+</div>

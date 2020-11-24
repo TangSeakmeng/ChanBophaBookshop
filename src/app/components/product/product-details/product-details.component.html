@@ -1,7 +1,8 @@
 <div class="productDetailContainer">
   <h1>{{this.product_data?.name}}</h1>
-  <p>Item Code: {{this.product_data?.itemCode}} Brand: {{this.product_data?.brand.name}}, Category: {{this.product_data?.category.name}}</p>
-  <p>Created At: {{formatDate(this.product_data?.createdAt)}}, Updated At: {{formatDate(this.product_data?.updatedAt)}}</p>
+  <p><b>+ Item Code:</b> {{this.product_data?.itemCode}}</p>
+  <p><b>+ Brand:</b> {{this.product_data?.brand.name}}</p>
+  <p><b>+ Category:</b> {{this.product_data?.category.name}}</p>
 
   <!-- <br>
   <div class="colorSampleContainer">
@@ -12,11 +13,14 @@
   </div> -->
   <!-- <br> -->
 
-  <p>Product Description:</p>
+  <p><b>+ Product Description:</b></p>
   <p [innerHTML]="this.product_data?.description"></p>
 
+  <p><b>+ Created At:</b> {{formatDate(this.product_data?.createdAt)}}</p>
+  <p><b>+ Updated At:</b> {{formatDate(this.product_data?.updatedAt)}}</p>
+
   <div class="ImagePreviewContainer">
-    <p>Product Images:</p>
+    <p><b>+ Product Images:</b></p>
     <div class="imagePreview">
       <div *ngFor="let image of this.product_data?.images">
         <img src="{{image.image}}">

@@ -1,0 +1,45 @@
+<div class="productPreviewContainer">
+
+  <div class="previewLeftSide">
+    <img src="{{ this.link != null ? this.link : this.productStore.product?.images[0].image }}" class="mainImage">
+    <div class="imagesPreview" *ngIf="this.productStore.product?.images.length > 1">
+      <img
+        *ngFor="let item of this.productStore.product?.images"
+        src="{{item.image}}"
+        class="imagePreview_thumbnail"
+        (click)="changeMainImage(item.image)"
+        [class.active_image]="item.image == this.link"
+        >
+    </div>
+  </div>
+
+  <div class="previewRightSide">
+    <h1>{{this.productStore.product?.name}}</h1>
+    <p [innerHTML]="this.productStore.product?.description" [ngStyle]="{'width': '100%', 'margin-top': '20px', 'line-height': '25px'}"></p>
+
+    <h4>Color:</h4>
+    <div class="colorLabelContainer">
+      <ng-container *ngIf="this.productColorStore.productColors.length == 0">
+        <button mat-raised-button
+        [ngStyle]="{'margin-right': '10px'}"
+        [class.active]="this.selectedColor == null"
+        >{{this.productStore.product?.color}}</button>
+      </ng-container>
+
+      <ng-container *ngIf="this.productColorStore.productColors.length != 0">
+        <button mat-raised-button
+        (click)="getDefaultColorImages(this.productStore.product?.key)"
+        [ngStyle]="{'margin-right': '10px'}"
+        [class.active]="this.selectedColor == null"
+        >{{this.productStore.product?.color}}</button>
+
+        <button mat-raised-button
+          (click)="getSelectedColorImages(this.productStore.product?.key, item.key)"
+          *ngFor="let item of this.productColorStore.productColors"
+          [ngStyle]="{'margin-right': '10px'}"
+          [class.active]="item.key == this.selectedColor"
+          >{{item.color}}</button>
+      </ng-container>
+    </div>
+  </div>
+</div>

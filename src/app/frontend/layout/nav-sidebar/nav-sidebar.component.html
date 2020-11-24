@@ -1,0 +1,75 @@
+<div class="categoriesNavigation">
+  <span class="material-icons categoryIcon">list</span>
+  <span>Categories</span>
+</div>
+
+<div class="navSidebarContainer">
+  <ul>
+    <li>
+
+      <ng-container *ngIf="this.categoryStore.categories.length <= 7">
+        <div class="navElement" *ngFor="let item of this.categoryStore.categories">
+          <span>{{item.name}}</span>
+          <span class="material-icons">arrow_right</span>
+
+          <div class="subNavElements">
+            <ul>
+              <ng-container *ngFor="let jtem of this.subCategoryStore.subCategories">
+                <li class="subNavElement"  *ngIf="jtem.subcategory.name == item.name" [routerLink]="['/subcategory/' + jtem.key]">
+                  <p>{{jtem.name}}</p>
+                </li>
+              </ng-container>
+
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="this.categoryStore.categories.length > 7">
+        <div class="navElement" *ngFor="let item of this.categoryStore.categories_6_elements">
+          <span>{{item.name}}</span>
+          <span class="material-icons">arrow_right</span>
+
+          <div class="subNavElements">
+            <ul>
+              <ng-container *ngFor="let jtem of this.subCategoryStore.subCategories">
+                <li class="subNavElement"  *ngIf="jtem.subcategory.name == item.name" [routerLink]="['/subcategory/' + jtem.key]">
+                  <p>{{jtem.name}}</p>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+
+        <div class="navElement">
+          <span>All Categories</span>
+          <span class="material-icons">arrow_right</span>
+
+          <div class="allCategoriesDialog">
+            <!-- <div *ngFor="let item of this.categoryStore.categories" class="categoryBlock">
+              <span>{{item.name}}</span>
+
+              <div class="categoryBlock_subcategories">
+                <ul>
+                  <ng-container *ngFor="let jtem of this.subCategoryStore.subCategories">
+                    <li *ngIf="jtem.subcategory.name == item.name" [routerLink]="['/subcategory/' + jtem.key]">
+                      <p>{{jtem.name}}</p>
+                    </li>
+                  </ng-container>
+                </ul>
+              </div>
+            </div> -->
+
+            <div *ngFor="let item of this.categoryStore.categories" class="categoryBlock">
+              <span style="color: #0177CF;">{{item.name}}</span>
+              <span *ngFor="let jtem of this.subCategoryStore.subCategories">
+                <span *ngIf="jtem.subcategory.name == item.name" [routerLink]="['/subcategory/' + jtem.key]"> / {{jtem.name}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+    </li>
+  </ul>
+</div>

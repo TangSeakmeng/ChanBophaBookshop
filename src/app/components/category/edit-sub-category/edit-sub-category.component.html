@@ -1,0 +1,24 @@
+<form [formGroup]="editCategoryForm" class="addCategoryForm" (ngSubmit)="onSubmit(editCategoryForm.value)">
+  <h1>Edit Subcategory of {{this.data.name}}</h1>
+
+  <mat-form-field appearance="outline" id="txtName">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" type="text" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="subcategory" [compareWith]="compareFn" required>
+      <mat-optgroup label="Category">
+        <mat-option *ngFor="let item of this.categoryStore.categories" [value]="this.categoryMapping.MapCategoryObj(item)">
+          {{item.name}}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="containerWithSpaceBetween">
+    <button mat-flat-button [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}" type="button" mat-dialog-close type="button">Close</button>
+    <button mat-flat-button color="primary" type="submit" [ngStyle]="{'margin': '0px'}">Edit</button>
+  </div>
+</form>

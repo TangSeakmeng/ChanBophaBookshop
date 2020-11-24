@@ -14,29 +14,33 @@
                 <tr class="table-row">
                     <th class="table-col">No</th>
                     <th class="table-col">Name</th>
-                    <th class="table-col">Subcategory Of</th>
-                    <th class="table-col">Created At</th>
                     <th class="table-col">Updated At</th>
-                    <th class="table-col">Deactivate</th>
-                    <th class="table-col" [ngStyle]="{'width': '150px'}">Action</th>
+                    <th class="table-col">Published On Homepage</th>
+                    <th class="table-col">Published</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody class="table-body">
                 <tr *ngFor="let item of this.categoryStore.categories; let i=index">
                     <td class="table-col">{{i + 1}}</td>
-                    <td class="table-col">{{item.name}}</td>
-                    <td class="table-col">{{item.subcategory? item.subcategory.name : ''}}</td>
-                    <td class="table-col">{{formatDate(item.createdAt)}}</td>
-                    <td class="table-col">{{formatDate(item.updatedAt)}}</td>
-                    <td><mat-checkbox class="example-margin"></mat-checkbox></td>
-                    <td>
+                    <td class="table-col" [ngStyle]="{'cursor': 'pointer'}" [routerLink]="['/admin/category-management/subCategories/' + item.key ]">{{item.name}}</td>
+                    <td class="table-col">{{dateFormatService.formatDate(item.updatedAt)}}</td>
+                    <td [ngStyle]="{'width': '220px'}">
+                      <mat-checkbox class="example-margin" (change)="publishedOnHomePageChanged($event.checked, item)" [checked]="item.publishedOnHomePage"></mat-checkbox>
+                    </td>
+                    <td [ngStyle]="{'width': '220px'}">
+                      <mat-checkbox class="example-margin" (change)="publishedChanged($event.checked, item)" [checked]="item.published"></mat-checkbox>
+                    </td>
+
+                    <td [ngStyle]="{'width': '120px'}">
                       <div class="actionButtons">
                         <button mat-icon-button (click)="editCategory(item)">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button (click)="deleteCategory(item)">
+                        <!-- <mat-checkbox class="example-margin" [ngStyle]="{'margin-left': '10px'}"></mat-checkbox> -->
+                        <!-- <button mat-icon-button (click)="deleteCategory(item)">
                           <mat-icon>delete</mat-icon>
-                        </button>
+                        </button> -->
                       </div>
                     </td>
 
@@ -54,52 +58,6 @@
                         </mat-menu>
                     </td> -->
                 </tr>
-
-                <tr>
-                  <td colspan="7">SubCategory</td>
-                </tr>
-
-                <tr *ngFor="let item of this.subCategoryStore.subCategories; let i=index">
-                  <td class="table-col">{{i + 1}}</td>
-                  <td class="table-col">{{item.name}}</td>
-                  <td class="table-col">{{item.subcategory? item.subcategory.name : ''}}</td>
-                  <td class="table-col">{{formatDate(item.createdAt)}}</td>
-                  <td class="table-col">{{formatDate(item.updatedAt)}}</td>
-                  <td><mat-checkbox class="example-margin"></mat-checkbox></td>
-                  <td>
-                    <div class="actionButtons">
-                      <button mat-icon-button (click)="editCategory(item)">
-                        <mat-icon>edit</mat-icon>
-                      </button>
-                      <button mat-icon-button (click)="deleteCategory(item)">
-                        <mat-icon>delete</mat-icon>
-                      </button>
-                    </div>
-                  </td>
-              </tr>
-
-              <tr>
-                <td colspan="7">More SubCategory</td>
-              </tr>
-
-              <tr *ngFor="let item of this.subSubCategoryStore.subSubCategories; let i=index">
-                <td class="table-col">{{i + 1}}</td>
-                <td class="table-col">{{item.name}}</td>
-                <td class="table-col">{{item.subsubcategory? item.subsubcategory.name : ''}}</td>
-                <td class="table-col">{{formatDate(item.createdAt)}}</td>
-                <td class="table-col">{{formatDate(item.updatedAt)}}</td>
-                <td><mat-checkbox class="example-margin"></mat-checkbox></td>
-                <td>
-                  <div class="actionButtons">
-                    <button mat-icon-button (click)="editCategory(item)">
-                      <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="deleteCategory(item)">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </div>
-                </td>
-              </tr>
             </tbody>
         </table>
     </div>

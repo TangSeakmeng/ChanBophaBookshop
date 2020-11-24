@@ -1,23 +1,35 @@
 <div class="sidebarContainer">
-  <img src="/assets/images/logos/logo 2.jpg" [routerLink]="">
+  <img src="/assets/images/logos/logo 2.jpg" [routerLink]="['/admin/product-management/products']">
 
   <div class="menuList">
-    <a href="/product-management">
+    <a [routerLink]="['/admin/product-management']" routerLinkActive="menuElement-active" >
       <div class="menuElement">
         <span class="menuElementIcon"> <img src="/assets/images/icons/books.png" /> </span>
         <p>Products</p>
       </div>
     </a>
-    <a href="/category-management">
+    <a [routerLink]="['/admin/category-management']" routerLinkActive="menuElement-active" >
       <div class="menuElement">
         <span class="menuElementIcon"> <img src="/assets/images/icons/newtons-cradle.png" /> </span>
         <p>Categories</p>
       </div>
     </a>
-    <a href="/brand-management">
+    <a [routerLink]="['/admin/brand-management']" routerLinkActive="menuElement-active">
       <div class="menuElement">
         <span class="menuElementIcon"> <img src="/assets/images/icons/blackboard.png" /> </span>
         <p>Brands</p>
+      </div>
+    </a>
+    <a [routerLink]="['/admin/information-management']" routerLinkActive="menuElement-active">
+      <div class="menuElement">
+        <span class="menuElementIcon"> <img src="/assets/images/icons/information.png" /> </span>
+        <p>Information</p>
+      </div>
+    </a>
+    <a [routerLink]="['/admin/slideshow-management']" routerLinkActive="menuElement-active">
+      <div class="menuElement">
+        <span class="menuElementIcon"> <img src="/assets/images/icons/picture.png" /> </span>
+        <p>Slide Show</p>
       </div>
     </a>
   </div>

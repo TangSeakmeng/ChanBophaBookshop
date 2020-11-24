@@ -7,7 +7,7 @@
       <form [formGroup]="addColorForm" class="addBrandForm" (ngSubmit)="onSubmit(addColorForm.value)">
         <mat-form-field appearance="outline">
           <mat-label>Color</mat-label>
-          <input matInput placeholder="Color" formControlName="color" type="text">
+          <input matInput placeholder="Color" formControlName="color" type="text" required>
         </mat-form-field><br>
 
         <label>Upload Images:</label><br><br>
@@ -17,9 +17,10 @@
           </ng-template>
         </p-fileUpload>
 
-        <button mat-flat-button type="submit" class="navyBlue-button">Add</button>
-        <button mat-flat-button type="reset" class="navyBlue-button">Reset</button>
-        <button mat-flat-button type="button" class="navyBlue-button">Close</button>
+        <div class="containerWithSpaceBetween" [ngStyle]="{'width': '100%'}">
+          <button mat-flat-button color="warn" (click)="clearForm()">Clear</button>
+          <button mat-flat-button type="submit" class="navyBlue-button" [ngStyle]="{'margin': '0px'}">Add</button>
+        </div>
       </form>
 
       <div class="scrollable-table" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" [ngStyle]="{'margin-top': '-25px'}">
@@ -29,7 +30,7 @@
                     <th class="table-col">No</th>
                     <th class="table-col">Color</th>
                     <th class="table-col">Image</th>
-                    <th class="table-col" [ngStyle]="{'width': '50px'}">Delete</th>
+                    <th [ngStyle]="{'color': 'red', 'width': '100px'}">Delete</th>
                 </tr>
             </thead>
             <tbody class="table-body">
@@ -37,9 +38,9 @@
                     <td class="table-col">{{i + 1}}</td>
                     <td class="table-col">{{item.color}}</td>
                     <td class="table-col">
-                      <img src="{{item.image}}" [ngStyle]="{'height': '38px'}">
+                      <img src="{{item.image}}" [ngStyle]="{'height': '50px'}">
                     </td>
-                    <td class="table-col">
+                    <td [ngStyle]="{'width': '100px'}">
                       <div class="actionButtons">
                         <button mat-icon-button (click)="deleteColorFromCollection(item)">
                           <mat-icon>delete</mat-icon>

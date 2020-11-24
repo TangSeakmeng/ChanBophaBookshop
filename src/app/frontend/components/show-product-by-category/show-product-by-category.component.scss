@@ -1,0 +1,136 @@
+.productsByCategoryContainer {
+  overflow-y: auto;
+  margin-bottom: 20px;
+
+  .container {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white;
+
+    .container_header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h1 {
+        font-weight: bold;
+        color: #333333;
+      }
+
+      h4 {
+        margin: 0;
+      }
+
+      h4:hover {
+        font-weight: bold;
+        cursor: pointer;
+        color: cornflowerblue;
+      }
+
+      h4:focus {
+        outline: none;
+        border: none;
+      }
+    }
+
+    .productsContainer {
+      width: 100%;
+      background-color: white;
+      display: flex;
+      overflow-x: scroll;
+      overflow-y: auto;
+      padding: 10px 0px;
+
+      .productContainer {
+        transition: 0.5s;
+        width: 220px;
+        height: 300px;
+        text-align: center;
+        padding: 0px 20px;
+        margin-left: 5px;
+
+        .imageContainer {
+          width: 200px;
+          height: 200px;
+          margin: 0 auto;
+        }
+
+        img {
+          padding-right: 20px;
+          padding-top: 20px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        p {
+          margin-top: 20px;
+          width: 100%;
+        }
+
+        button {
+          margin-top: 30px;
+        }
+      }
+
+      .productContainer:focus {
+        border: none;
+        outline: none;
+      }
+
+      .productContainer:hover {
+        transition: 0.5s;
+        cursor: pointer;
+        color: cornflowerblue;
+        box-shadow: 0px 0px 2px #f0f0f0;
+        border-radius: 5px;
+        background-color: #F4F4F4;
+      }
+
+      .productContainer_last_child {
+        background-color: #F4F4F4;
+        transition: 0.5s;
+        width: 220px;
+        height: 300px;
+        text-align: center;
+        padding: 0px 20px;
+        margin-left: 5px;
+        border-radius: 5px;
+
+        .imagesContainer {
+          width: 200px;
+          height: 200px;
+          margin: 0 auto;
+
+          img {
+            padding-right: 20px;
+            padding-top: 20px;
+            width: 50%;
+            height: 100px;
+            object-fit: cover;
+            float: left;
+          }
+        }
+
+        .textContainer {
+          text-align: left;
+          margin-top: 30px;
+        }
+      }
+
+      .productContainer_last_child:hover {
+        cursor: pointer;
+        transition: 0.5s;
+      }
+
+      .productContainer_last_child:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+
+  .productsContainer::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -3,6 +3,14 @@
   padding: 0px 30px;
   margin-top: 20px;
 
+  tr .actionButtons {
+    display: none;
+  }
+
+  tr:hover .actionButtons {
+    display: block;
+  }
+
   .productHeader {
     display: flex;
     align-items: center;

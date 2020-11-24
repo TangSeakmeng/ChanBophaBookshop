@@ -29,7 +29,7 @@ export class CategoryMappingService {
         key: category.key,
         name: category.name,
         subcategory: {
-          id: category.subcategory.key,
+          key: category.subcategory.key,
           name: category.subcategory.name
         }
       }

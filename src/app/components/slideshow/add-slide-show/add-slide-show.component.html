@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Add Slideshow</h2>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <p-fileUpload class="imageSelection" #fileUpload (onSelect)="uploadFileChange($event)"
+      multiple="multiple" accept="image/*" chooseLabel="Upload Images">
+      <ng-template pTemplate="content">
+      </ng-template>
+    </p-fileUpload>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <button mat-raised-button color="accent" style="margin-right: 10px;" mat-dialog-close>Close</button>
+        <button mat-raised-button color="warn" (click)="clearSelectedFiles()">Clear</button>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="submitUploading()">Upload</button>
+    </div>
+  </div>
+</mat-dialog-content>

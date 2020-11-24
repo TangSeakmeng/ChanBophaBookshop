@@ -3,10 +3,10 @@
 
   <mat-form-field appearance="outline" id="txtName">
     <mat-label>Name</mat-label>
-    <input matInput placeholder="Name" formControlName="name" type="text">
+    <input matInput placeholder="Name" formControlName="name" type="text" required>
   </mat-form-field>
 
-  <mat-checkbox class="example-margin" (change)="checkedSubCategoryChanged($event.checked)">SubCategory</mat-checkbox><br/><br/>
+  <!-- <mat-checkbox class="example-margin" (change)="checkedSubCategoryChanged($event.checked)">SubCategory</mat-checkbox><br/><br/>
 
   <mat-form-field appearance="outline">
     <mat-label>Select</mat-label>
@@ -29,8 +29,10 @@
         <mat-option [value]="this.categoryMapping.MapCategoryObj(item)">{{item.name}}</mat-option>
       </ng-container>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
 
-  <button mat-flat-button color="primary" type="submit">Add</button>
-  <button mat-flat-button color="warn" type="reset">Cancel</button>
+  <div class="containerWithSpaceBetween">
+    <button mat-flat-button [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}" type="button" mat-dialog-close type="button">Close</button>
+    <button mat-flat-button color="primary" type="submit" [ngStyle]="{'margin': '0px'}">Add</button>
+  </div>
 </form>

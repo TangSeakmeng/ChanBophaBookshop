@@ -18,6 +18,7 @@ import { CategoryStore } from 'src/app/stores/category.store';
 import { ProductStore } from 'src/app/stores/product.store';
 import { SubCategoryStore } from 'src/app/stores/subcategory.store';
 import { SubSubCategoryStore } from 'src/app/stores/subsubcategory.store';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-product',
@@ -44,6 +45,7 @@ export class AddProductComponent implements OnInit {
   constructor(
     public storage: AngularFireStorage,
     public formBuilder: FormBuilder,
+    public _snackBar: MatSnackBar,
 
     public categoryMapping: CategoryMappingService,
     public brandMapping: BrandMappingService,
@@ -72,6 +74,12 @@ export class AddProductComponent implements OnInit {
     this.subSubCategoryStore.getCategories();
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   onSubmit(formData) {
     this.startUpload(formData);
   }
@@ -93,14 +101,26 @@ export class AddProductComponent implements OnInit {
       color,
       images: this.firebaseUploadedImages,
       createdAt: Date.now(),
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      published: true
     };
 
     this.productStore.addProduct(data);
     this.color= "#ffffff";
     this.firebaseUploadedImages = [];
+    this.selectedFiles = [];
     this.addProductForm.reset();
     this.fileUpload.clear();
+
+    this.openSnackBar('Add Product Successfully.', 'Close');
+  }
+
+  clearForm() {
+    this.color= "#ffffff";
+    this.firebaseUploadedImages = [];
+    this.addProductForm.reset();
+    this.fileUpload.clear();
+    this.selectedFiles = [];
   }
 
   startUpload(formData) {

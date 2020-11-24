@@ -40,8 +40,12 @@
       </ng-template>
     </p-fileUpload>
 
-    <button mat-flat-button class="navyBlue-button" type="submit">Add</button>
-    <button mat-flat-button class="navyBlue-button" type="reset">Reset</button>
-    <button mat-flat-button class="navyBlue-button" mat-dialog-close type="button">Close</button>
+    <div class="containerWithSpaceBetween">
+      <div>
+        <button mat-flat-button mat-dialog-close type="button" [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}">Close</button>
+        <button mat-flat-button color="warn" (click)="clearForm()">Clear</button>
+      </div>
+      <button mat-flat-button class="navyBlue-button" type="submit" [ngStyle]="{'margin': '0px', 'padding': '0px 40px'}">Add {{this.data.name}}</button>
+    </div>
   </form>
 </mat-dialog-content>

@@ -1,0 +1,15 @@
+<div class="ContactUsContainer">
+  <h1>Contact Us</h1>
+  <p>Tel: {{this.informationStore.information[3]?.value}}</p>
+  <p>Email: {{this.informationStore.information[1]?.value}}</p>
+  <p>Facebook: {{this.informationStore.information[2]?.value}}</p>
+  <p>Address: {{this.informationStore.information[0]?.value}}</p>
+
+  <div class="mapContainer">
+    <h1>{{ title }}</h1>
+
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+  </div>
+</div>

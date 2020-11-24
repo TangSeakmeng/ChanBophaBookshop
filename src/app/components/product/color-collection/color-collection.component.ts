@@ -72,6 +72,7 @@ export class ColorCollectionComponent implements OnInit {
     this.firebaseUploadedImages = [];
     this.addColorForm.reset();
     this.fileUpload.clear();
+    this.selectedFiles = [];
   }
 
   startUpload(formData) {
@@ -103,5 +104,12 @@ export class ColorCollectionComponent implements OnInit {
 
   deleteColorFromCollection(data) {
     this.productStore.deleteColorFromColorCollection(data)
+  }
+
+  clearForm() {
+    this.firebaseUploadedImages = [];
+    this.addColorForm.reset();
+    this.fileUpload.clear();
+    this.selectedFiles = [];
   }
 }

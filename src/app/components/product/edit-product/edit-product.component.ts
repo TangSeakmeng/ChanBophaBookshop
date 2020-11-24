@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -60,6 +61,7 @@ export class EditProductComponent implements OnInit {
     public categoryStore: CategoryStore,
     public subCategoryStore: SubCategoryStore,
     public subSubCategoryStore: SubSubCategoryStore,
+    private _snackBar: MatSnackBar,
 
     public storage: AngularFireStorage,
     @Inject(MAT_DIALOG_DATA) public data: Product
@@ -86,6 +88,12 @@ export class EditProductComponent implements OnInit {
     this.subCategoryStore.getCategories();
     this.subSubCategoryStore.getCategories();
     this.brandStore.getBrands();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   compareFn(user1:any, user2: any) {
@@ -125,7 +133,8 @@ export class EditProductComponent implements OnInit {
       color,
       images: this.images,
       createdAt: Date.now(),
-      updatedAt: Date.now()
+      updatedAt: Date.now(),
+      published: true
     };
 
     this.deletedImages.forEach((item) => {
@@ -135,6 +144,8 @@ export class EditProductComponent implements OnInit {
     this.fileUpload.clear();
     this.firebaseUploadedImages = [];
     this.selectedFiles = [];
+
+    this.openSnackBar('Edit Product Successfully.', 'Close');
   }
 
   startUpload(formData) {

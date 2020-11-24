@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   onSubmit(formData) {
     const { email, password } = formData;
     this.auth.signInWithEmailAndPassword(email, password).then(user => {
-      this.router.navigate(['']);
+      this.router.navigate(['/admin']);
     }).catch((error) => {
       console.log(error)
     });

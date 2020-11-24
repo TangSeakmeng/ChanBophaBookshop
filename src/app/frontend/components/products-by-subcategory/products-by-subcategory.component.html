@@ -1,0 +1,17 @@
+<div class="productsContainer">
+  <ng-container *ngIf="this.productStore.products.length > 0">
+    <div *ngFor="let item of this.productStore.products">
+      <div class="productContainer" [routerLink]="['/product/' + item.key]">
+        <div>
+          <div class="imageContainer">
+            <img src="{{item.images[0].image}}">
+          </div>
+          <p>{{item.name}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="this.productStore.products.length == 0">
+    No Products Found.
+  </ng-container>
+</div>

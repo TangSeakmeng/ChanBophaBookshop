@@ -1,0 +1,10 @@
+<div class="productsContainer">
+  <ng-container *ngFor="let item of this.productStore.products">
+    <div class="productContainer" [routerLink]="['/product/' + item.key]">
+      <div class="imageContainer">
+        <img src="{{item.images[0].image}}">
+      </div>
+      <p>{{item.name}}</p>
+    </div>
+  </ng-container>
+</div>

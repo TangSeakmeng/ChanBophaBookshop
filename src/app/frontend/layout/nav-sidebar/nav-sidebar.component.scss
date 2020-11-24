@@ -1,0 +1,133 @@
+@import '../../../../setting.scss';
+
+.categoriesNavigation {
+  width: 100%;
+  padding: 8px;
+  color: #777777;
+  font-weight: bold;
+  border-bottom: 2px solid #777777;
+  cursor: pointer;
+  float: left;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  .categoryIcon {
+    margin-right: 5px;
+  }
+}
+
+.navSidebarContainer {
+  width: 100%;
+  background-color: white;
+  margin-bottom: 20px;
+
+  ul {
+    // margin-top: 40px;
+
+    li {
+      list-style-type: none;
+
+      .navElement {
+        position: relative;
+        padding: 15px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .subNavElements {
+          position: absolute;
+          z-index: 2;
+          left: 245px;
+          width: 250px;
+          box-shadow: 0px 0px 4px #b9b9b9;
+
+          .subNavElement {
+            display: none;
+            padding: 15px;
+            font-weight: normal;
+            background-color: white;
+
+            p {
+              margin: 0;
+            }
+          }
+
+          .subNavElement:hover {
+            cursor: pointer;
+            background-color: #0177CF;
+            color: white;
+          }
+
+          .subNavElement:focus {
+            outline: none;
+            border: none;
+          }
+        }
+      }
+
+      .allCategoriesDialog {
+        display: none;
+        position: absolute;
+        z-index: 50;
+        background-color: white;
+        width: 500px;
+        padding: 20px;
+        left: 245px;
+        bottom: 0;
+        box-shadow: 0px 0px 4px #b9b9b9;
+
+        // .categoryBlock {
+        //   width: 25%;
+        //   height: 100%;
+        //   float: left;
+        //   overflow: auto;
+
+        //   span {
+        //     color: #0177CF;
+        //     font-weight: bold;
+        //     font-size: 15px;
+        //   }
+
+        //   .categoryBlock_subcategories {
+        //     background-color: green;
+        //   }
+        // }
+
+        .categoryBlock {
+          span {
+            color: grey;
+          }
+
+          span:focus {
+            outline: none;
+            border: none;
+          }
+        }
+      }
+
+      .navElement:hover {
+        cursor: pointer;
+        border-left: 5px solid rgb(18, 113, 255);
+        background-color: rgb(122, 175, 255);
+
+        span {
+          color: white
+        }
+
+        .subNavElements {
+
+          .subNavElement {
+            display: block;
+          }
+        }
+
+        .allCategoriesDialog {
+          display: block;
+        }
+      }
+    }
+  }
+}

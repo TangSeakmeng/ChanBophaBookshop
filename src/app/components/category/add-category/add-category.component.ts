@@ -17,13 +17,13 @@ import { BrandMappingService } from 'src/app/services/mapping/brand-mapping.serv
 })
 export class AddCategoryComponent implements OnInit {
 
-  tempSubCategories: Category[];
+  // tempSubCategories: Category[];
 
-  disabledSubCategory = true;
-  disabledSubSubCategory = true;
+  // disabledSubCategory = true;
+  // disabledSubSubCategory = true;
 
-  selectedSubCategory: Category;
-  selectedSubSubCategory: Category;
+  // selectedSubCategory: Category;
+  // selectedSubSubCategory: Category;
 
   addCategoryForm;
 
@@ -35,42 +35,50 @@ export class AddCategoryComponent implements OnInit {
     public brandMapping: BrandMappingService,
 
     public categoryStore: CategoryStore,
-    public subCategoryStore: SubCategoryStore,
-    public subSubCategoryStore: SubSubCategoryStore,
+    // public subCategoryStore: SubCategoryStore,
+    // public subSubCategoryStore: SubSubCategoryStore,
   ) {
     this.addCategoryForm = this.formBuilder.group({
       name: '',
-      subcategory: ({ disable: true }),
-      subsubcategory: ({ disable: true }),
+      // subcategory: ({ disable: true }),
+      // subsubcategory: ({ disable: true }),
     });
   }
 
   ngOnInit(): void {
-    this.categoryStore.getCategories();
-    this.subCategoryStore.getCategories();
+    // this.categoryStore.getCategories();
+    // this.subCategoryStore.getCategories();
   }
 
   onSubmit(formData) {
-    if(this.disabledSubCategory && this.disabledSubSubCategory)
-      this.categoryStore.addCategory({ ...formData, subcategory: null, subsubcategory: null });
-    else if (!this.disabledSubCategory && this.disabledSubSubCategory)
-      this.subCategoryStore.addCategory({ ...formData, subsubcategory: null });
-    else if (!this.disabledSubCategory && !this.disabledSubSubCategory)
-      this.subSubCategoryStore.addCategory({ ...formData })
+    this.categoryStore.addCategory({
+      ...formData,
+      subcategory: null,
+      subsubcategory: null,
+      published: true,
+      publishedOnHomepage: true
+    });
+
+    // if(this.disabledSubCategory && this.disabledSubSubCategory)
+    //   this.categoryStore.addCategory({ ...formData, subcategory: null, subsubcategory: null });
+    // else if (!this.disabledSubCategory && this.disabledSubSubCategory)
+    //   this.subCategoryStore.addCategory({ ...formData, subsubcategory: null });
+    // else if (!this.disabledSubCategory && !this.disabledSubSubCategory)
+    //   this.subSubCategoryStore.addCategory({ ...formData })
 
     this.addCategoryForm.reset();
   }
 
-  checkedSubCategoryChanged(event: any) {
-    this.disabledSubCategory = !event;
-  }
+  // checkedSubCategoryChanged(event: any) {
+  //   this.disabledSubCategory = !event;
+  // }
 
-  checkedSubSubCategoryChanged(event: any) {
-    this.disabledSubSubCategory = !event;
-  }
+  // checkedSubSubCategoryChanged(event: any) {
+  //   this.disabledSubSubCategory = !event;
+  // }
 
-  onSubCategoryChanged(event: any) {
-    this.selectedSubCategory = event.value;
-    this.tempSubCategories = this.subCategoryStore.getFilteredSubcategories(this.selectedSubCategory?.name);
-  }
+  // onSubCategoryChanged(event: any) {
+  //   this.selectedSubCategory = event.value;
+  //   this.tempSubCategories = this.subCategoryStore.getFilteredSubcategories(this.selectedSubCategory?.name);
+  // }
 }

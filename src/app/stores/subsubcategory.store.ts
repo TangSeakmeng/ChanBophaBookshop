@@ -18,9 +18,16 @@ export class SubSubCategoryStore {
   }
 
   @action
+  getCategoryThroughParent(parentKey) {
+    this.afs.collection('subSubCategories', ref => ref.where('subsubcategory.key', '==', parentKey)).valueChanges().subscribe(data => {
+      this.subSubCategories = data
+    });
+  }
+
+  @action
   addCategory(category: Category) {
     const key = this.afs.createId()
-    this.afs.collection('subSubCategories').add({
+    this.afs.collection('subSubCategories').doc(key).set({
       key,
       ...category,
       createdAt: Date.now(),

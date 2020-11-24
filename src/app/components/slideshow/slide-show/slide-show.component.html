@@ -1,0 +1,18 @@
+<div id="slideShowContainer">
+  <div class="slideShowHeader">
+    <h1>Slide Show</h1>
+    <button mat-raised-button color="primary" (click)="openDialog()">Add Slide Show</button>
+  </div>
+
+  <div class="slideShowImagesContainer">
+    <div *ngFor="let item of this.slideShowStore.images" class="slideShowImageContainer">
+      <div class="imageContainer">
+        <img src="{{ item.image }}">
+      </div>
+      <div class="actionButtons">
+        <mat-checkbox class="example-margin" (change)="publishedChanged($event, item.key)" [checked]="item.published">Published</mat-checkbox>
+        <button mat-raised-button color="warn" (click)="deleteSlideShowImage(item)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

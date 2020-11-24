@@ -1,0 +1,31 @@
+<div class="navSidebarContainer">
+  <h3>Related Subcategories</h3>
+
+  <div class="subCategoryItems">
+    <ng-container *ngFor="let item of this.categoryStore.categories">
+      <ng-container *ngFor="let jtem of this.subCategoryStore.subCategories_2">
+        <div *ngIf="item.key == jtem.subcategory.key" class="subCategoryItem">
+          <p [routerLink]="['/subcategory/' + jtem.key]" routerLinkActive="subCategoryElement-active">{{jtem.name}}</p>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="brandItems">
+    <h3>Related Brand</h3>
+    <button mat-button color="primary" (click)="clearFilterBrand()">Clear</button>
+  </div>
+
+  <!-- <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" class="example-radio-group">
+    <mat-radio-button class="example-radio-button" *ngFor="let item of this.brandStore.brands" [value]="item">
+      {{item.name}}
+      <div class="radiobutton_image">
+        <img src="{{item.image}}" >
+      </div>
+    </mat-radio-button>
+  </mat-radio-group> -->
+
+  <section class="example-section" *ngFor="let item of this.brandStore.brands">
+    <mat-checkbox class="example-margin" (change)="checkboxBrandChanged($event, item)" [color]="checkboxColor" [checked]="this.checkIfBrandSelected(item.name)">{{item.name}}</mat-checkbox>
+  </section>
+</div>

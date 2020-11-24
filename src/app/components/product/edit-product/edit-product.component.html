@@ -28,23 +28,23 @@
           <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
             <mat-select formControlName="category" [compareWith]="compareFn">
-              <mat-optgroup label="Main Category">
+              <!-- <mat-optgroup label="Main Category">
                 <mat-option *ngFor="let item of this.categoryStore.categories" [value]="this.categoryMapping.MapCategoryObj(item)">
                   {{item.name}}
                 </mat-option>
-              </mat-optgroup>
+              </mat-optgroup> -->
 
-              <mat-optgroup label="SubCategory">
+              <mat-optgroup label="Subcategories">
                 <mat-option *ngFor="let item of this.subCategoryStore.subCategories" [value]="this.categoryMapping.MapSubCategoryObj(item)">
                   {{item.name}}
                 </mat-option>
               </mat-optgroup>
 
-              <mat-optgroup label="More SubCategory">
+              <!-- <mat-optgroup label="More SubCategory">
                 <mat-option *ngFor="let item of this.subSubCategoryStore.subSubCategories" [value]="this.categoryMapping.MapSubSubCategoryObj(item)">
                   {{item.name}}
                 </mat-option>
-              </mat-optgroup>
+              </mat-optgroup> -->
             </mat-select>
           </mat-form-field>
 
@@ -62,7 +62,7 @@
             <ng-container *ngFor="let item of this.images" >
               <div class="ImageContainer">
                 <img src="{{item.image}}"><br><br>
-                <button mat-raised-button color="warn" (click)="deleteImageFromGallery(item)" type="button">Warn</button>
+                <button mat-raised-button color="warn" (click)="deleteImageFromGallery(item)" type="button">Delete</button>
               </div>
             </ng-container>
           </div>
@@ -77,9 +77,10 @@
             </ng-template>
           </p-fileUpload>
 
-          <button mat-flat-button class="navyBlue-button" type="submit">Edit</button>
-          <button mat-flat-button class="navyBlue-button" color="primary" type="reset">Cancel</button>
-          <button mat-flat-button class="navyBlue-button" mat-dialog-close color="primary" type="button">Close</button>
+          <div class="containerWithSpaceBetween">
+            <button mat-flat-button mat-dialog-close [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}" type="button">Close</button>
+            <button mat-flat-button class="navyBlue-button" type="submit" [ngStyle]="{'margin': '0px'}">Save</button>
+          </div>
         </form>
       </ng-container>
     </mat-tab>

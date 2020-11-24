@@ -1,0 +1,47 @@
+<div id="categoryContainer" *mobxAutorun>
+  <div class="categoryHeader">
+    <h1>More Subcategories of {{this.subCategoryStore.subCategory?.name}}</h1>
+    <button mat-raised-button class="navyBlue-button" (click)="OpenAddCategoryDialog()">
+      <mat-icon>add</mat-icon>
+      <span>Add Category</span>
+    </button>
+  </div>
+
+  <ng-container>
+    <div class="scrollable-table" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500">
+        <table class="table-wrapper" #printtable id="printtable">
+            <thead class="table-header">
+                <tr class="table-row">
+                    <th class="table-col">No</th>
+                    <th class="table-col">Name</th>
+                    <th class="table-col">Subcategory Of</th>
+                    <th class="table-col">Created At</th>
+                    <th class="table-col">Updated At</th>
+                    <th class="table-col">Deactivate</th>
+                    <th class="table-col" [ngStyle]="{'width': '150px'}">Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr *ngFor="let item of this.subSubCategoryStore.subSubCategories; let i=index">
+                <td class="table-col">{{i + 1}}</td>
+                <td class="table-col">{{item.name}}</td>
+                <td class="table-col">{{item.subsubcategory? item.subsubcategory.name : ''}}</td>
+                <td class="table-col">{{formatDate(item.createdAt)}}</td>
+                <td class="table-col">{{formatDate(item.updatedAt)}}</td>
+                <td><mat-checkbox class="example-margin"></mat-checkbox></td>
+                <td>
+                  <div class="actionButtons">
+                    <button mat-icon-button (click)="editCategory(item)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteCategory(item)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+  </ng-container>
+</div>

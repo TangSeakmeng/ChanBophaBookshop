@@ -15,9 +15,8 @@
                     <th class="table-col">No</th>
                     <th class="table-col">Image</th>
                     <th class="table-col">Name</th>
-                    <th class="table-col">Created At</th>
+                    <!-- <th class="table-col">Created At</th> -->
                     <th class="table-col">Updated At</th>
-                    <th class="table-col" [ngStyle]="{'width': '150px'}">Deactivate</th>
                     <th class="table-col" [ngStyle]="{'width': '150px'}">Actions</th>
                 </tr>
             </thead>
@@ -28,17 +27,19 @@
                       <img src="{{item.image}}" [ngStyle]="{'width': '48px'}">
                     </td>
                     <td class="table-col">{{item.name}}</td>
-                    <td class="table-col">{{formatDate(item.createdAt)}}</td>
+
+                    <!-- <td class="table-col">{{formatDate(item.createdAt)}}</td> -->
                     <td class="table-col">{{formatDate(item.updatedAt)}}</td>
-                    <td><mat-checkbox class="example-margin"></mat-checkbox></td>
+
                     <td>
                       <div class="actionButtons">
                         <button mat-icon-button (click)="editBrand(item)">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button (click)="deleteBrand(item)">
+                        <!-- <mat-checkbox class="example-margin" [ngStyle]="{'margin-left': '10px'}"></mat-checkbox> -->
+                        <!-- <button mat-icon-button (click)="deleteBrand(item)">
                           <mat-icon>delete</mat-icon>
-                        </button>
+                        </button> -->
                       </div>
                     </td>
 

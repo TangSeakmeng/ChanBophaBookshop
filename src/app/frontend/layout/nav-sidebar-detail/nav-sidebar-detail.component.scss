@@ -1,0 +1,86 @@
+@import '../../../../setting.scss';
+
+.navSidebarContainer {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  h3 {
+    margin-left: 20px;
+    padding-top: 20px;
+  }
+
+  .subCategoryItems {
+    width: 80%;
+    margin: 0 auto;
+
+    .subCategoryItem {
+      padding: 5px;
+
+      p:focus {
+        outline: none;
+        border: none;
+      }
+    }
+
+    .subCategoryItem:hover {
+      color: #0177CF;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .subCategoryItem:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+  .radioBrand {
+    margin-left: 20px;
+  }
+}
+
+.brandItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    margin: 0;
+    margin-right: 20px;
+  }
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  margin-left: 20px;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.radiobutton_image {
+  width: 100px;
+  height: 80px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.example-section {
+  margin: 12px 0;
+  margin-left: 20px;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+

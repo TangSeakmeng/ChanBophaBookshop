@@ -10,6 +10,7 @@ export interface Product {
   category: Category,
   brand: Brand,
   color: string,
+  published: boolean,
 
   images: Gallery[],
 

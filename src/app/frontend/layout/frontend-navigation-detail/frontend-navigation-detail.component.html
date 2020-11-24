@@ -1,0 +1,42 @@
+<div class="navigationHeaderContainer">
+  <div class="sidebarNavigationContainer">
+    <div class="categoriesLabel">
+      <span class="material-icons categoryIcon">list</span>
+      <span>Categories</span>
+    </div>
+
+    <div class="navSidebarContainer">
+      <ul>
+        <li>
+
+          <div class="navElement" *ngFor="let item of this.categoryStore.categories">
+            <span>{{item.name}}</span>
+            <span class="material-icons">arrow_right</span>
+
+            <div class="subNavElements">
+              <ul>
+                <ng-container *ngFor="let jtem of this.subCategoryStore.subCategories">
+                  <li class="subNavElement"  *ngIf="jtem.subcategory.name == item.name" [routerLink]="['/subcategory/' + jtem.key]">
+                    <p>{{jtem.name}}</p>
+                  </li>
+                </ng-container>
+
+              </ul>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="navigationContainer">
+    <div>
+      <ul>
+        <li [routerLink]="['/']" routerLinkActive="navigation-menu-active">Home</li>
+        <li [routerLink]="['/contact-us']" routerLinkActive="navigation-menu-active">Contact Us</li>
+      </ul>
+    </div>
+  </div>
+</div>

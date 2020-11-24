@@ -1,0 +1,17 @@
+<div class="headerContainer">
+
+  <div class="headerContainer_logo">
+    <img src="/assets/images/logos/logo 2.1.jpg" [routerLink]="['/']">
+  </div>
+
+  <div class="headerContainer_search">
+    <input type="text" [(ngModel)]="keyword">
+
+    <button (click)="searchProduct()">
+      <span class="material-icons" style="margin-right: 10px;">
+        search
+        </span>
+      Search
+    </button>
+  </div>
+</div>

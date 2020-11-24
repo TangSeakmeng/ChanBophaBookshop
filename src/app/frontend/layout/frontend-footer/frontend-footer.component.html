@@ -1,0 +1,66 @@
+<div class="aboveFooterContainer">
+  <div class="firstColumn">
+    <p>Stay Connected</p>
+    <div class="groupSocials">
+      <a href="https://www.facebook.com/chanbopha.stationery" target="_blank">
+        <img src="./assets/images/icons/facebook.png">
+      </a>
+    </div>
+  </div>
+  <div class="secondColumn">
+    <p>Category</p>
+    <ul>
+      <ul>
+        <li *ngFor="let item of this.subCategoryStore.groupedCategory">
+          <a [routerLink]="['/subcategory/' + item.key]">{{ item.subcategory.name }}</a>
+        </li>
+      </ul>
+    </ul>
+  </div>
+  <div class="thirdColumn">
+    <p>Category</p>
+    <ul>
+      <ul>
+        <li *ngFor="let item of this.subCategoryStore.groupedCategory">
+          <a [routerLink]="['/subcategory/' + item.key]">{{ item.subcategory.name }}</a>
+        </li>
+      </ul>
+    </ul>
+  </div>
+  <div class="fourthColumn">
+    <p>Contact Us</p>
+    <ul>
+      <li>Facebook Page</li>
+      <li>Phone Number</li>
+    </ul>
+  </div>
+</div>
+
+<!-- <div class="footerContainer">
+  <div class="footerBox">
+    <p class="title">Help</p>
+    <p class="description">Lorem Ipsum is simply dummy text of the printing and
+      typesetting industry. Lorem Ipsum has been the industry's standard dummy
+      text ever since the 1500s, when an unknown printer took a galley of type
+      and scrambled it to make a type specimen book.</p>
+  </div>
+
+  <div class="footerBox">
+    <p class="title">Broswer by Category</p>
+    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+  </div>
+
+  <div class="footerBox">
+    <p class="title">Stationary Support</p>
+    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+  </div>
+
+  <div class="footerBox">
+    <p class="title">Office Decoration</p>
+    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+  </div>
+</div> -->
+
+<div class="belowFooterContainer">
+  <p>&#169;2020 ChanBopha.com. All right reserved.</p>
+</div>

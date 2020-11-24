@@ -32,7 +32,7 @@ export class ViewProductComponent implements OnInit {
 
     if(result) {
       this.productStore.deleteProduct(this.productStore.product)
-      this.router.navigate(['/product-management']);
+      this.router.navigate(['/admin/product-management']);
     }
   }
 }

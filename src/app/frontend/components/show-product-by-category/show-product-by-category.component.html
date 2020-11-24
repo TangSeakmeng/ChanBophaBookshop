@@ -1,0 +1,40 @@
+<div class="productsByCategoryContainer">
+
+  <ng-container *ngFor="let category of this.categoryStore.ProductsByCategory">
+
+    <div *ngIf="category.value.length != 0" class="container">
+      <div class="container_header">
+        <h1>{{ category.key.name }}</h1>
+        <!-- <h4 [routerLink]="['/subcategory/' + category.value[0].category.key]">More</h4> -->
+      </div>
+
+      <div class="productsContainer">
+        <div *ngFor="let product of category.value; let i = index;">
+
+          <div *ngIf="i < 5" [routerLink]="['/product/' + product.key]"  class="productContainer">
+            <div class="imageContainer">
+              <img src="{{product.images[0].image}}">
+            </div>
+            <p>{{product.name}}</p>
+          </div>
+
+          <div *ngIf="category.value.length >= 6 && i == 5" [routerLink]="['/subcategory/' + category.value[0].category.key]" class="productContainer_last_child">
+            <div class="imagesContainer">
+              <div class="imageContainer">
+                <img *ngIf="category.value.length >= 6" src="{{category.value[5]?.images[0].image}}">
+                <img *ngIf="category.value.length >= 7" src="{{category.value[6]?.images[0].image}}">
+                <img *ngIf="category.value.length >= 8" src="{{category.value[7]?.images[0].image}}">
+                <img *ngIf="category.value.length >= 9" src="{{category.value[8]?.images[0].image}}">
+              </div>
+            </div>
+            <div class="textContainer">
+              View More Product >
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

@@ -6,8 +6,7 @@ import { EditCategoryComponent } from '../edit-category/edit-category.component'
 
 import { Category } from 'src/app/models/category.model';
 import { CategoryStore } from '../../../stores/category.store';
-import { SubCategoryStore } from 'src/app/stores/subcategory.store';
-import { SubSubCategoryStore } from 'src/app/stores/subsubcategory.store';
+import { DateFormatService } from '../../../services/data-manipulation/date-format.service';
 
 @Component({
   selector: 'app-categories',
@@ -18,16 +17,12 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-
     public categoryStore: CategoryStore,
-    public subCategoryStore: SubCategoryStore,
-    public subSubCategoryStore: SubSubCategoryStore,
+    public dateFormatService: DateFormatService
   ) { }
 
   ngOnInit(): void {
     this.categoryStore.getCategories();
-    this.subCategoryStore.getCategories();
-    this.subSubCategoryStore.getCategories();
   }
 
   OpenAddCategoryDialog() {
@@ -45,12 +40,11 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  formatDate(datetime) {
-    var dt = new Date(datetime);
-    if(dt.getHours() > 12)
-      return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()} ${dt.getHours() - 12}:${dt.getMinutes()}:${dt.getSeconds()} PM`;
-    else
-      return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()} ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()} AM`;
+  publishedChanged(result, item) {
+    this.categoryStore.updateCategoryPublished(item, result);
   }
 
+  publishedOnHomePageChanged(result, item) {
+    this.categoryStore.updateCategoryPublishedOnHomePage(item, result);
+  }
 }

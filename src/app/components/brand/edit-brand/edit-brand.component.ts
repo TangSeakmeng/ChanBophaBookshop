@@ -43,15 +43,21 @@ export class EditBrandComponent implements OnInit {
   }
 
   onSubmit(formData) {
-    if(this.imageFile) {
-      this.startUpload(formData);
+    if(formData.name == '') {
+      alert('Please input brand information')
+      return;
     }
     else {
-      this.brandStore.updateBrand({
-        ...formData,
-        key: this.brandId,
-        updatedAt: Date.now()
-      }, null);
+      if(this.imageFile) {
+        this.startUpload(formData);
+      }
+      else {
+        this.brandStore.updateBrand({
+          ...formData,
+          key: this.brandId,
+          updatedAt: Date.now()
+        }, null);
+      }
     }
   }
 
@@ -60,23 +66,29 @@ export class EditBrandComponent implements OnInit {
   }
 
   startUpload(formData) {
-    const path = `brands/${Date.now()}_${this.imageFile.name}`;
-    const ref = this.storage.ref(path);
+    if(formData.name == '' || formData.image == null || formData.image == '') {
+      alert('Please input brand information')
+      return;
+    }
+    else {
+      const path = `brands/${Date.now()}_${this.imageFile.name}`;
+      const ref = this.storage.ref(path);
 
-    this.task = this.storage.upload(path, this.imageFile);
-    this.percentage = this.task.percentageChanges();
+      this.task = this.storage.upload(path, this.imageFile);
+      this.percentage = this.task.percentageChanges();
 
-    this.task.then(f=>{
-      f.ref.getDownloadURL().then(url=>{
+      this.task.then(f=>{
+        f.ref.getDownloadURL().then(url=>{
 
-        this.brandStore.updateBrand({
-          ...formData,
-          key: this.brandId,
-          image: url,
-          imagePath: path,
-          updatedAt: Date.now()
-        }, this.brandStore.brand.imagePath);
-      })
-    });
+          this.brandStore.updateBrand({
+            ...formData,
+            key: this.brandId,
+            image: url,
+            imagePath: path,
+            updatedAt: Date.now()
+          }, this.brandStore.brand.imagePath);
+        })
+      });
+    }
   }
 }
