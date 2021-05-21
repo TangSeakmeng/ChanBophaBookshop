@@ -13,94 +13,68 @@
     </div>
   </div>
 
-  <div scrollable (scrollPosition)="scrollHandler($event)" [ngStyle]="{'height': '750px', 'overflow-y': 'auto', 'padding': '0px 20px', 'margin-top': '20px'}">
+  <div style="padding: 20px 0px !important;" *ngIf="this.productStore.loading">
+    <ng-container>
+      <p-skeleton styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton height="2rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="10rem" height="4rem"></p-skeleton>
+    </ng-container>
+  </div>
+
+  <div scrollable *ngIf="!this.productStore.loading" (scrollPosition)="scrollHandler($event)" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
+  [ngStyle]="{'height': '750px', 'overflow-y': 'auto', 'padding': '0px 10px', 'margin-top': '20px'}">
     <div class="scrollable-table">
-        <table class="table-wrapper" #printtable id="printtable">
-            <thead class="table-header">
-                <tr class="table-row">
-                    <th class="table-col">No</th>
-                    <th class="table-col">ItemCode</th>
-                    <th class="table-col">Image</th>
-                    <th class="table-col">Name</th>
-                    <th class="table-col">Subcategory</th>
-                    <th class="table-col">Brand</th>
-                    <th class="table-col">Color</th>
-                    <th class="table-col">Published</th>
-                    <!-- <th class="table-col">Created At</th>
-                    <th class="table-col">Updated At</th> -->
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody class="table-body">
-              <tr *ngFor="let item of this.productStore.data; let i=index">
-                    <td class="table-col">{{i + 1}}</td>
-                    <td class="table-col" [routerLink]="['/admin/product-management/product-detail/' + item.key ]">{{item.itemCode}}</td>
-                    <td class="table-col" [routerLink]="['/admin/product-management/product-detail/' + item.key ]">
-                      <img *ngIf="item.images.length > 0" src="{{item.images[0].image}}" [ngStyle]="{'height': '38px'}">
-                    </td>
-                    <td class="table-col" [routerLink]="['/admin/product-management/product-detail/' + item.key ]">{{item.name}}</td>
-                    <td class="table-col">{{item.category.name}}</td>
-                    <td class="table-col">{{item.brand.name}}</td>
-                    <td class="table-col">{{item.color}}</td>
-                    <td class="table-col">
-                      <mat-checkbox class="example-margin" (change)="publishedChanged($event.checked, item)" [checked]="item.published"></mat-checkbox>
-                    </td>
+      <table class="table-wrapper" #printtable id="printtable">
+        <thead class="table-header">
+          <tr class="table-row">
+            <th class="table-col">No</th>
+            <th class="table-col">ItemCode</th>
+            <th class="table-col">Image</th>
+            <th class="table-col">Name</th>
+            <th class="table-col">Subcategory</th>
+            <th class="table-col">Brand</th>
+            <th class="table-col">Color</th>
+            <th class="table-col">Published</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr *ngFor="let item of this.productStore.data; let i=index">
+            <td class="table-col">{{i + 1}}</td>
+            <td class="table-col" [routerLink]="['/admin/product-management/product-detail/' + item.key ]">{{item.itemCode}}</td>
+            <td class="table-col" [routerLink]="['/admin/product-management/product-detail/' + item.key ]">
+              <img *ngIf="item.images.length === 0" [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="'./assets/images/icons/no image.png'" [ngStyle]="{'height': '38px'}" />
+              <img *ngIf="item.images.length > 0" [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="item.images[0].image" [ngStyle]="{'height': '38px'}" />
+            </td>
+            <td class="table-col" [routerLink]="['/admin/product-management/product-detail/' + item.key ]">{{item.name | shorten : 50 : '...'}}</td>
+            <td class="table-col">{{item.category.name}}</td>
+            <td class="table-col">{{item.brand.name}}</td>
+            <td class="table-col">{{item.color}}</td>
+            <td class="table-col">
+              <mat-checkbox class="example-margin" (change)="publishedChanged($event.checked, item)" [checked]="item.published"></mat-checkbox>
+            </td>
 
-                    <td [ngStyle]="{'width': '120px'}">
-                      <div class="actionButtons">
-                        <button mat-icon-button (click)="editProduct(item)">
-                          <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-icon-button (click)="deleteProduct(item)">
-                          <mat-icon>delete</mat-icon>
-                        </button>
-                      </div>
-                    </td>
-
-                    <!-- <td class="table-col">{{dateFormat.formatDate(item.createdAt)}}</td>
-                    <td class="table-col">{{dateFormat.formatDate(item.updatedAt)}}</td> -->
-
-                    <!-- <td>
-                      <div class="rowOptionAction">
-                        <button mat-menu-item (click)="editProduct(item)">
-                          <mat-icon>edit</mat-icon>
-                          <span>Edit</span>
-                        </button>
-                        <button mat-menu-item (click)="deleteProduct(item)">
-                          <mat-icon>delete</mat-icon>
-                          <span>Delete</span>
-                        </button>
-                      </div>
-                    </td> -->
-
-                    <!-- <td class="table-col">
-                      <a [routerLink]="['/product-management/product-detail/' + item.id ]">
-                        <button mat-menu-item>
-                          <mat-icon>more</mat-icon>
-                          <span>View</span>
-                        </button>
-                      </a>
-                    </td> -->
-
-                    <!-- <td class="table-col center">
-                      <button mat-button [matMenuTriggerFor]="menu">
-                        <mat-icon mat-icon-button>more_vert</mat-icon>
-                      </button>
-
-                      <mat-menu #menu="matMenu" class="optionEditDelete">
-                        <button mat-menu-item (click)="editProduct(item)">
-                          <mat-icon>edit</mat-icon>
-                          <span>Edit</span>
-                        </button>
-                        <button mat-menu-item (click)="deleteProduct(item)">
-                          <mat-icon>delete</mat-icon>
-                          <span>Delete</span>
-                        </button>
-                      </mat-menu>
-                    </td> -->
-                </tr>
-            </tbody>
-        </table>
+            <td [ngStyle]="{'width': '120px'}">
+              <div class="actionButtons">
+                <button mat-icon-button (click)="editProduct(item)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteProduct(item)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <ng-container *ngIf="this.productStore.fetching">
+        <div class="spinnerContainer">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

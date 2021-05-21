@@ -9,6 +9,8 @@ import { SubSubCategoryStore } from 'src/app/stores/subsubcategory.store';
 
 import { CategoryMappingService } from 'src/app/services/mapping/category-mapping.service';
 import { BrandMappingService } from 'src/app/services/mapping/brand-mapping.service';
+import { IconPackageStore } from 'src/app/stores/iconPackge.store';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-category',
@@ -16,6 +18,8 @@ import { BrandMappingService } from 'src/app/services/mapping/brand-mapping.serv
   styleUrls: ['./add-category.component.scss']
 })
 export class AddCategoryComponent implements OnInit {
+  selectedIconPackage = '';
+  selectedImage;
 
   // tempSubCategories: Category[];
 
@@ -34,39 +38,51 @@ export class AddCategoryComponent implements OnInit {
     public categoryMapping: CategoryMappingService,
     public brandMapping: BrandMappingService,
 
+    public iconPackagetStore: IconPackageStore,
     public categoryStore: CategoryStore,
+
+    public _snackBar: MatSnackBar,
+
     // public subCategoryStore: SubCategoryStore,
     // public subSubCategoryStore: SubSubCategoryStore,
   ) {
     this.addCategoryForm = this.formBuilder.group({
       name: '',
+
       // subcategory: ({ disable: true }),
       // subsubcategory: ({ disable: true }),
     });
   }
 
   ngOnInit(): void {
+    this.iconPackagetStore.getIconPackages();
     // this.categoryStore.getCategories();
     // this.subCategoryStore.getCategories();
   }
 
   onSubmit(formData) {
-    this.categoryStore.addCategory({
-      ...formData,
-      subcategory: null,
-      subsubcategory: null,
-      published: true,
-      publishedOnHomepage: true
-    });
+    if(this.selectedImage) {
+      this.categoryStore.addCategory({
+        ...formData,
+        icon: this.selectedImage,
+        subcategory: null,
+        subsubcategory: null,
+        published: true,
+        publishedOnHomepage: true
+      });
 
-    // if(this.disabledSubCategory && this.disabledSubSubCategory)
-    //   this.categoryStore.addCategory({ ...formData, subcategory: null, subsubcategory: null });
-    // else if (!this.disabledSubCategory && this.disabledSubSubCategory)
-    //   this.subCategoryStore.addCategory({ ...formData, subsubcategory: null });
-    // else if (!this.disabledSubCategory && !this.disabledSubSubCategory)
-    //   this.subSubCategoryStore.addCategory({ ...formData })
+      // if(this.disabledSubCategory && this.disabledSubSubCategory)
+      //   this.categoryStore.addCategory({ ...formData, subcategory: null, subsubcategory: null });
+      // else if (!this.disabledSubCategory && this.disabledSubSubCategory)
+      //   this.subCategoryStore.addCategory({ ...formData, subsubcategory: null });
+      // else if (!this.disabledSubCategory && !this.disabledSubSubCategory)
+      //   this.subSubCategoryStore.addCategory({ ...formData })
 
-    this.addCategoryForm.reset();
+      this.addCategoryForm.reset();
+    } else {
+      this.openSnackBar('Please Select Any Icon First.', 'Close');
+      return;
+    }
   }
 
   // checkedSubCategoryChanged(event: any) {
@@ -81,4 +97,23 @@ export class AddCategoryComponent implements OnInit {
   //   this.selectedSubCategory = event.value;
   //   this.tempSubCategories = this.subCategoryStore.getFilteredSubcategories(this.selectedSubCategory?.name);
   // }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  compareFn(user1:any, user2: any) {
+    return user1 && user2 ? user1.key === user2.key : user1 === user2;
+  }
+
+  selectIconPackageChanged(event) {
+    this.iconPackagetStore.getIconPackageImagesByKey(event.value.key);
+  }
+
+  selectImageChanged(item) {
+    this.selectedImage = item;
+    console.log(item)
+  }
 }

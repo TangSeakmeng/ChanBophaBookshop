@@ -11,6 +11,7 @@ import { generateKeywords, GenerateKeywordService } from '../services/generate-k
 
 @Injectable({providedIn:'root'})
 export class ProductStore {
+
   @observable public products = [];
   @observable public product;
 
@@ -46,7 +47,8 @@ export class ProductStore {
   @action
   getProductById(productId) {
     this.afs.collection('products').doc(productId).valueChanges().subscribe((data) => {
-      this.product = data
+      this.product = data;
+      console.log(data)
     })
   }
 
@@ -93,7 +95,12 @@ export class ProductStore {
 
   @action
   updateProduct(product: Product) {
-    this.afs.collection(`products`).doc(product.key).update(product);
+    const keywords = generateKeywords([ product.name ])
+    this.afs.collection(`products`).doc(product.key).update({
+      keywords,
+      ...product,
+      updatedAt: Date.now()
+    });
   }
 
   @action
@@ -155,11 +162,13 @@ export class ProductStore {
 
     if(brands.length == 0)
       this.afs.collection('products', ref => ref.where('category.key', '==', key)).valueChanges().subscribe(data => {
-        this.products = data
+        this.data = data
+        // this.products = data
       });
     else
       this.afs.collection('products', ref => ref.where('category.key', '==', key).where('brand.key', 'in', brands_id)).valueChanges().subscribe(data => {
-        this.products = data
+        this.data = data
+        // this.products = data
       });
   }
 
@@ -170,11 +179,12 @@ export class ProductStore {
 
     if(brands.length == 0)
       this.afs.collection('products', ref => ref.where('keywords', 'array-contains', keyword.toUpperCase())).valueChanges().subscribe(data => {
-        this.products = data
+        // this.products = data
+        this.data = data
       });
     else
       this.afs.collection('products', ref => ref.where('keywords', 'array-contains', keyword.toUpperCase()).where('brand.key', 'in', brands_id)).valueChanges().subscribe(data => {
-        this.products = data
+        this.data = data
       });
   }
 
@@ -201,13 +211,13 @@ export class ProductStore {
   }
 
   @action
-  async fetchDataFireUser(search: any, filter: any) {
+  async fetchData(search: any, filter: any) {
     this.loading = true;
     this.lastVisible = null;
     this.fetching = false;
     this.searchText = search;
     this.filter = filter;
-    const ref = this.lazyUserRef(this.lastVisible, search, filter)
+    const ref = this.lazyRef(this.lastVisible, search, filter)
     ref.auditTrail().subscribe();
     ref.snapshotChanges().subscribe(response => {
       this.data = [];
@@ -228,9 +238,9 @@ export class ProductStore {
   }
 
   @action
-  async fetchDataFireUserMore() {
+  async fetchDataMore() {
     this.fetching = true;
-    this.lazyUserRef(this.lastVisible, this.searchText, this.filter).get().subscribe(response => {
+    this.lazyRef(this.lastVisible, this.searchText, this.filter).get().subscribe(response => {
       if (!response.docs.length) {
         this.loading = false
         this.fetching = false;
@@ -246,21 +256,48 @@ export class ProductStore {
     });
   }
 
-  lazyUserRef(lastVisible: any, search, filter) {
-    return this.afs.collection<any>("products", ref => {
-      let condition = ref
-        // .where("status.key", "==", 1)
-        .orderBy("updatedAt", "desc")
-        .limit(10)
-      if (search) {
-        const txt = GenerateKeywordService.toCapitalize(search)
-        condition = condition.where('keywords', 'array-contains', txt)
-      }
-      if (lastVisible) {
-        condition = condition.startAfter(lastVisible)
-      }
-      return condition
-    })
-
+  lazyRef(lastVisible: any, search, filter) {
+    if(!search && !filter) {
+      return this.afs.collection<any>("products", ref => {
+        let condition = ref
+          .orderBy("updatedAt", "desc")
+          .limit(10)
+        if (search) {
+          const txt = GenerateKeywordService.toCapitalize(search)
+          condition = condition.where('keywords', 'array-contains', txt)
+        }
+        if (lastVisible) {
+          condition = condition.startAfter(lastVisible)
+        }
+        return condition
+      })
+    }
+    else if(search) {
+      return this.afs.collection<any>("products", ref => {
+        let condition = ref
+          .where('keywords', 'array-contains', search.toUpperCase())
+          .orderBy("updatedAt", "desc")
+          .limit(10)
+        if (lastVisible) {
+          condition = condition.startAfter(lastVisible)
+        }
+        return condition
+      })
+    }
+    else if(filter) {
+      return this.afs.collection<any>("products", ref => {
+        let condition = ref
+          .where("category.key", "==", filter)
+          .orderBy("updatedAt", "desc")
+          .limit(12)
+        if (lastVisible) {
+          condition = condition.startAfter(lastVisible)
+        }
+        return condition
+      })
+    }
+    else {
+      alert(search)
+    }
   }
 }

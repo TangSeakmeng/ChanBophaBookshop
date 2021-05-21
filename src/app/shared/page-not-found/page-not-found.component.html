@@ -1,0 +1,9 @@
+<div class="NotFoundContainer">
+  <div style="text-align: center;">
+    <div class="logoContainer" [routerLink]="['/']">
+      <img src="/assets/images/logos/logo 2.1.jpg">
+    </div>
+    <main lottie [options]="options" (animationCreated)="animationCreated($event)" class="image"></main>
+    <button mat-button [routerLink]="['/']">Click Here to Homepage.</button>
+  </div>
+</div>

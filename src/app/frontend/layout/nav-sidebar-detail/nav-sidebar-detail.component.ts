@@ -48,10 +48,12 @@ export class NavSidebarDetailComponent implements OnInit {
       this.selectedFilteredBrands.splice(index, 1);
     }
 
-    if(this.subCategoryId != undefined)
+    if(this.subCategoryId != undefined) {
       this.productStore.getProductByCategoryKeyAndFilterByBrand(this.subCategoryId, this.selectedFilteredBrands)
-    else
+    }
+    else {
       this.productStore.getProductBySearchKeywordAndFilterByBrand(this.searchKeyword, this.selectedFilteredBrands)
+    }
   }
 
   clearFilterBrand() {

@@ -26,8 +26,8 @@
     }
 
     .subCategoryItem:hover {
-      color: #0177CF;
-      font-weight: bold;
+      color: $base-color;;
+      font-weight: 400;
       cursor: pointer;
     }
 
@@ -84,3 +84,19 @@
   margin: 0 12px;
 }
 
+@media only screen and (max-width: 850px) {
+  .navSidebarContainer {
+    margin-top: 20px;
+    overflow: auto;
+  }
+
+  .groupCheckbox {
+    margin-top: -20px;
+  }
+
+  .example-margin {
+    float: left;
+    margin-right: 20px;
+    line-height: 30px;
+  }
+}

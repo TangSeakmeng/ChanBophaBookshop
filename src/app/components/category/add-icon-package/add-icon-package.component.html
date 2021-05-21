@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Add Icon Package</h2>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <p>
+      <mat-form-field appearance="outline" [ngStyle]="{'width': '100%'}">
+        <mat-label>Package Name</mat-label>
+        <input matInput placeholder="Enter package name" [(ngModel)]="packageName">
+      </mat-form-field>
+    </p>
+
+    <label class="labelUploadIcon">Upload Icons</label>
+    <div style="width: 100%; height: 10px;"></div>
+    <p-fileUpload class="imageSelection" #fileUpload (onSelect)="uploadFileChange($event)"
+      multiple="multiple" accept="image/*" chooseLabel="Upload Images">
+      <ng-template pTemplate="content">
+      </ng-template>
+    </p-fileUpload>
+
+    <div class="containerWithSpaceBetween">
+      <div>
+        <button mat-raised-button class="buttonWithIcon" type="button" mat-dialog-close
+         style="margin-right: 20px; background-color: #FF033E; color: white;">
+          <mat-icon style="background-color: #ce0231; color: white;">close</mat-icon>
+          <span>Close</span>
+        </button>
+
+        <button mat-raised-button class="buttonWithIcon" type="reset" (click)="clearSelectedFiles()"
+         style="margin-right: 20px; background-color: #F44336; color: white;">
+          <mat-icon style="background-color: #c4372d; color: white;">not_interested</mat-icon>
+          <span>Clear</span>
+        </button>
+      </div>
+      <button mat-raised-button class="navyBlue-button buttonWithIcon" type="submit" 
+      (click)="submitUploading()" style="margin-right: 0px;">
+        <mat-icon>add</mat-icon>
+        <span>Upload</span>
+      </button>
+    </div>
+  </div>
+</mat-dialog-content>

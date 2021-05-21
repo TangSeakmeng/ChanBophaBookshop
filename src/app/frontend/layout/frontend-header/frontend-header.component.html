@@ -1,17 +1,33 @@
-<div class="headerContainer">
+<div class="headerParentContainer">
+  <div class="headerContainer">
 
+    <div class="headerContainer_logo">
+      <img src="/assets/images/logos/Health Care logo.png" [routerLink]="['/']">
+    </div>
+  
+    <div class="headerContainer_search">
+      <input type="text" [(ngModel)]="keyword">
+  
+      <button (click)="searchProduct()">
+        <span class="material-icons" style="margin-right: 10px;">
+          search
+          </span>
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="headerContainer_2">
+  <div class="headerContainer_icon">
+    <img src="/assets/images/icons/list.png" (click)="openDialog()">
+  </div>
   <div class="headerContainer_logo">
     <img src="/assets/images/logos/logo 2.1.jpg" [routerLink]="['/']">
   </div>
-
-  <div class="headerContainer_search">
-    <input type="text" [(ngModel)]="keyword">
-
-    <button (click)="searchProduct()">
-      <span class="material-icons" style="margin-right: 10px;">
-        search
-        </span>
-      Search
-    </button>
+  <div class="headerContainer_icon">
+    <img src="/assets/images/icons/messenger.png" [routerLink]="['/contact-us']">
   </div>
 </div>
+
+<div class="headerContainer_2_invisble"></div>

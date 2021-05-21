@@ -22,6 +22,7 @@ import { ContactUsComponent } from './frontend/components/contact-us/contact-us.
 import { InformationComponent } from './components/information/information.component';
 import { Main2Component } from './frontend/layout/main2/main2.component';
 import { SlideShowComponent } from './components/slideshow/slide-show/slide-show.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -124,9 +125,11 @@ const routes: Routes = [
           { path: "", redirectTo: "slideshow", pathMatch: "full" },
           { path: "slideshow", component: SlideShowComponent },
         ]
-      }
+      },
     ],
   },
+  {path: '404', component: PageNotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

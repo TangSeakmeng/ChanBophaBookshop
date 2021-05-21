@@ -7,61 +7,50 @@
     </button>
   </div>
 
-  <ng-container>
-    <div class="scrollable-table" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500">
-        <table class="table-wrapper" #printtable id="printtable">
-            <thead class="table-header">
-                <tr class="table-row">
-                    <th class="table-col">No</th>
-                    <th class="table-col">Image</th>
-                    <th class="table-col">Name</th>
-                    <!-- <th class="table-col">Created At</th> -->
-                    <th class="table-col">Updated At</th>
-                    <th class="table-col" [ngStyle]="{'width': '150px'}">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="table-body">
-                <tr *ngFor="let item of this.brandStore.brands; let i=index">
-                    <td class="table-col">{{i + 1}}</td>
-                    <td class="table-col">
-                      <img src="{{item.image}}" [ngStyle]="{'width': '48px'}">
-                    </td>
-                    <td class="table-col">{{item.name}}</td>
+  <div style="padding: 20px 0px !important;" *ngIf="this.brandStore.loading">
+    <ng-container>
+      <p-skeleton styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton height="2rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="10rem" height="4rem"></p-skeleton>
+    </ng-container>
+  </div>
 
-                    <!-- <td class="table-col">{{formatDate(item.createdAt)}}</td> -->
-                    <td class="table-col">{{formatDate(item.updatedAt)}}</td>
+  <div class="scrollable-table" *ngIf="!this.brandStore.loading" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500"
+  [ngStyle]="{'height': '750px', 'overflow-y': 'auto', 'padding': '0px 10px', 'margin-top': '20px'}">
+    <table class="table-wrapper" #printtable id="printtable">
+        <thead class="table-header">
+            <tr class="table-row">
+                <th class="table-col">No</th>
+                <th class="table-col">Image</th>
+                <th class="table-col">Name</th>
+                <th class="table-col">Created At</th>
+                <th class="table-col">Updated At</th>
+                <th class="table-col" [ngStyle]="{'width': '150px'}">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="table-body">
+            <tr *ngFor="let item of this.brandStore.brands; let i=index">
+                <td class="table-col">{{i + 1}}</td>
+                <td class="table-col">
+                  <img *ngIf="!item.image" [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="'./assets/images/icons/no image.png'" [ngStyle]="{'width': '48px'}" />
+                  <img *ngIf="item.image" [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="item.image" [ngStyle]="{'width': '48px'}" />
+                </td>
+                <td class="table-col">{{item.name}}</td>
 
-                    <td>
-                      <div class="actionButtons">
-                        <button mat-icon-button (click)="editBrand(item)">
-                          <mat-icon>edit</mat-icon>
-                        </button>
-                        <!-- <mat-checkbox class="example-margin" [ngStyle]="{'margin-left': '10px'}"></mat-checkbox> -->
-                        <!-- <button mat-icon-button (click)="deleteBrand(item)">
-                          <mat-icon>delete</mat-icon>
-                        </button> -->
-                      </div>
-                    </td>
+                <td class="table-col">{{formatDate(item.createdAt)}}</td>
+                <td class="table-col">{{formatDate(item.updatedAt)}}</td>
 
-                    <!-- <td class="table-col center">
-                        <button mat-button [matMenuTriggerFor]="menu">
-                          <mat-icon mat-icon-button>more_vert</mat-icon>
-                        </button>
-
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="editBrand(item)">
-                                <mat-icon>edit</mat-icon>
-                                <span>Edit</span>
-                            </button>
-                            <button mat-menu-item (click)="deleteBrand(item)">
-                                <mat-icon>delete</mat-icon>
-                                <span>Delete</span>
-                            </button>
-                        </mat-menu>
-                    </td> -->
-                </tr>
-            </tbody>
-        </table>
-    </div>
-  </ng-container>
+                <td>
+                  <div class="actionButtons">
+                    <button mat-icon-button (click)="editBrand(item)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
 </div>

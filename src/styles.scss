@@ -33,11 +33,12 @@ $OnlineStore-theme: mat-light-theme((
 // that you are using.
 @include angular-material-theme($OnlineStore-theme);
 
-@import url('https://fonts.googleapis.com/css2?family=Battambang&family=Hanuman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 
 /* You can add global styles to this file, and also import other style files */
 
 @import '~swiper/swiper-bundle.min.css';
+@import './setting.scss';
 
 * {
   margin: 0;
@@ -46,9 +47,10 @@ $OnlineStore-theme: mat-light-theme((
 
 html, body { height: 100%; }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Open Sans', sans-serif !important; }
 
 h1 {
+  font-family: 'Open Sans', sans-serif !important;
   color: #333333 !important;
 }
 
@@ -56,62 +58,57 @@ a {
   text-decoration: none;
 }
 
+// ------------------------------------------------------------------------------------------------------- table
+
 table {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 30px;
   background-color: white;
 
   border-collapse: collapse;
-  box-shadow: 0px 0px 10px 1px #b3b3b3;
+  box-shadow: 0 0 5px rgb(0 0 0 / 10%) !important;
+
+  .mat-checkbox-ripple .mat-ripple-element,.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: $base-color !important;
+  }
+
+  &, th, td {
+    border-bottom: 1px solid rgb(199, 199, 199);
+    position: relative;
+    padding: 10px;
+    text-align: left;
+  }
+
+  tr {
+    height: 70px;
+    transition: 0.2s;
+    position: relative;
+  
+    td {
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  
+    &:hover {
+      cursor: pointer;
+      transition: 0.2s;
+      background-color: darken(white, 10);
+    }
+  }
 }
 
-table, th, td {
-  border-bottom: 1px solid rgb(199, 199, 199);
-  position: relative;
-  padding: 10px;
-  text-align: left;
-}
+// ------------------------------------------------------------------------------------------------------- angular material
 
-table td:focus {
-  border: none;
-}
-
-table tbody tr {
-  height: 70px;
-  transition: 0.2s;
-  position: relative;
-}
-
-table tbody tr:hover {
-  cursor: pointer;
-  transition: 0.2s;
-  background-color: darken(white, 10);
-}
-
-table tbody tr .rowOptionAction {
-  position: absolute;
-  z-index: 10;
-  top: 20px;
-  right: 70px;
-  display: none;
-  background-color: white;
-  box-shadow: 0px 0px 8px #888888;
-  border-radius: 5px;
-}
-
-table tbody tr td:focus {
-  outline: none;
-}
-
-table tbody tr:hover .rowOptionAction {
-  display: block;
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  font-weight: bold;
+  background-color: $base-color !important;
 }
 
 .navyBlue-button {
-  // background-color: #123764 !important;
-
-  background-color: lighten(#123764, 10) !important;
+  background-color: $base-color !important;
   color: white !important;
   text-align: center;
 
@@ -120,25 +117,16 @@ table tbody tr:hover .rowOptionAction {
   }
 }
 
-.colorPicker {
-  width: 30%;
-  height: 50px;
-  text-align: center;
-  border: none;
-  border: 1px solid lighten(rgb(197, 197, 197), 10);
+mat-icon {
+  color: rgb(105, 105, 105);
 }
 
-.p-fileupload {
-  margin-bottom: 20px;
+.brandItems .mat-button-wrapper {
+  color:  $base-color;
 }
 
-.p-fileupload-buttonbar span {
-  background-color: lighten(#123764, 10) !important;
-  border: none !important;
-}
-
-p-button {
-  display: none;
+.mat-dialog-content {
+  max-height: unset !important;
 }
 
 .headerContainer .searchZone .mat-form-field-wrapper {
@@ -149,30 +137,7 @@ p-button {
   padding-bottom: 0;
 }
 
-mat-icon {
-  color: rgb(105, 105, 105);
-}
-
-.containerWithSpaceBetween {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.menuElement-active {
-  display: flex;
-  background-color: rgb(177, 177, 177) !important;
-}
-
-.subCategoryElement-active {
-  color: #0177CF;
-}
-
-.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
-  font-weight: bold;
-  background-color: #0177CF !important;
-}
+// ------------------------------------------------------------------------------------------------------- swiper
 
 .swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
   padding: 15px 10px;
@@ -190,26 +155,136 @@ mat-icon {
   margin-left: -15px;
 }
 
-// .productsContainer .swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
-//   padding: 15px;
-//   border-radius: 20px;
-//   color: white;
-//   font-size: 10px;
-// }
-
-// .productsContainer .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
-//   padding: 15px;
-//   border-radius: 10px;
-//   color: black;
-//   font-size: 15px;
-// }
+.swiper-pagination-handle span {
+  color: white;
+  background-color: white;
+  border: none;
+}
 
 .swiper-pagination-bullet-active {
   opacity: 1;
   background: white;
 }
 
-.navigation-menu-active {
+.swiper .s-wrapper .swiper-pagination .swiper-pagination-handle .swiper-pagination-bullet {
   color: white;
-  background-color: #8F8F8F;
+  background-color: white;
+}
+
+// ------------------------------------------------------------------------------------------------------- PRIMENG
+
+.p-fileupload {
+  margin-bottom: 20px;
+}
+
+.p-fileupload-buttonbar span {
+  background-color: lighten($base-color, 10) !important;
+  border: none !important;
+}
+
+p-button {
+  display: none;
+}
+
+// ------------------------------------------------------------------------------------------------------- other customs' styles
+
+.colorPicker {
+  width: 30%;
+  height: 50px;
+  text-align: center;
+  border: none;
+  border: 1px solid lighten(rgb(197, 197, 197), 10);
+}
+
+.containerWithSpaceBetween {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuElement-active {
+  display: flex;
+  color: white !important;
+  background-color: $base-color !important;
+}
+
+.subCategoryElement-active {
+  padding: 10px;
+  border-left: 5px solid $base-color;
+  color: $base-color;
+}
+
+.navigation-menu-active {
+  border-bottom: 2px solid $base-color;
+}
+
+.buttonWithIcon {
+  padding-left: 0 !important;
+
+  mat-icon {
+    background-color: darken($color: $base-color, $amount: 10);
+    padding: 7px;
+    border-radius: 3px;
+    box-sizing: content-box;
+    margin-right: 10px;
+  }
+}
+
+#slideShowContainer {
+  width: 100%;
+  padding: 0px 30px;
+  margin-top: 20px;
+
+  .slideShowHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .slideShowImagesContainer {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    margin-top: 20px;
+
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
+
+    .slideShowImageContainer {
+      width: 100%;
+      height: auto;
+      overflow: auto;
+      padding: 20px;
+      background-color: white;
+
+      .imageContainer {
+        width: 100%;
+        height: 200px;
+        background-color: grey;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .actionButtons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  
+  h1 {
+    margin: 0;
+  }  
+
+  .mat-checkbox-ripple .mat-ripple-element,.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: $base-color !important;
+  }
 }

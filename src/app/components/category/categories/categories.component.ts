@@ -7,6 +7,7 @@ import { EditCategoryComponent } from '../edit-category/edit-category.component'
 import { Category } from 'src/app/models/category.model';
 import { CategoryStore } from '../../../stores/category.store';
 import { DateFormatService } from '../../../services/data-manipulation/date-format.service';
+import { AddIconPackageComponent } from '../add-icon-package/add-icon-package.component';
 
 @Component({
   selector: 'app-categories',
@@ -26,11 +27,22 @@ export class CategoriesComponent implements OnInit {
   }
 
   OpenAddCategoryDialog() {
-    this.dialog.open(AddCategoryComponent);
+    const dialogRef = this.dialog.open(AddCategoryComponent, {
+      width: '750px',
+      height: '96vh',
+    });
+
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 
   editCategory(category: Category) {
-    this.dialog.open(EditCategoryComponent, { data: { ...category } });
+    const dialogRef = this.dialog.open(EditCategoryComponent, {
+      width: '750px',
+      height: '96vh',
+      data: { ...category }
+    });
+
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 
   deleteCategory(category) {
@@ -46,5 +58,14 @@ export class CategoriesComponent implements OnInit {
 
   publishedOnHomePageChanged(result, item) {
     this.categoryStore.updateCategoryPublishedOnHomePage(item, result);
+  }
+
+  OpenAddIconPackageDialog() {
+    const dialogRef = this.dialog.open(AddIconPackageComponent, {
+      width: '750px',
+      height: '96vh',
+    });
+
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 }

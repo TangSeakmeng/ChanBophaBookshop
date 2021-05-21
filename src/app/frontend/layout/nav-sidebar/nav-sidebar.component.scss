@@ -3,9 +3,9 @@
 .categoriesNavigation {
   width: 100%;
   padding: 8px;
-  color: #777777;
+  color: $base-color;;
   font-weight: bold;
-  border-bottom: 2px solid #777777;
+  border-bottom: 1px solid $base-color;;
   cursor: pointer;
   float: left;
 
@@ -31,11 +31,21 @@
 
       .navElement {
         position: relative;
-        padding: 15px;
+        padding: 13px;
 
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .navElement_image_name {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          img {
+            margin-right: 20px;
+          }
+        }
 
         .subNavElements {
           position: absolute;
@@ -57,8 +67,8 @@
 
           .subNavElement:hover {
             cursor: pointer;
-            background-color: #0177CF;
-            color: white;
+            border-left: 5px solid $base-color;;
+            color: $base-color;;
           }
 
           .subNavElement:focus {
@@ -110,11 +120,10 @@
 
       .navElement:hover {
         cursor: pointer;
-        border-left: 5px solid rgb(18, 113, 255);
-        background-color: rgb(122, 175, 255);
+        border-left: 5px solid $base-color;;
 
         span {
-          color: white
+          color: $base-color;;
         }
 
         .subNavElements {

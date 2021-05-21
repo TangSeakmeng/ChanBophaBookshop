@@ -66,10 +66,22 @@
 
     <div class="containerWithSpaceBetween">
       <div>
-        <button mat-flat-button mat-dialog-close type="button" [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}">Close</button>
-        <button mat-flat-button color="warn" (click)="clearForm()">Clear</button>
+        <button mat-raised-button class="buttonWithIcon" type="button" mat-dialog-close
+         style="margin-right: 20px; background-color: #FF033E; color: white;">
+          <mat-icon style="background-color: #ce0231; color: white;">close</mat-icon>
+          <span>Close</span>
+        </button>
+
+        <button mat-raised-button class="buttonWithIcon" type="reset"
+         style="margin-right: 20px; background-color: #F44336; color: white;">
+          <mat-icon style="background-color: #c4372d; color: white;">not_interested</mat-icon>
+          <span>Clear</span>
+        </button>
       </div>
-      <button mat-flat-button class="navyBlue-button" type="submit" [ngStyle]="{'margin': '0px', 'padding': '0px 40px'}">Add Product</button>
+      <button mat-raised-button class="navyBlue-button buttonWithIcon" type="submit" style="margin-right: 0px;">
+        <mat-icon>add</mat-icon>
+        <span>Add Product</span>
+      </button>
     </div>
   </form>
 </mat-dialog-content>

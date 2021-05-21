@@ -1,0 +1,23 @@
+.NotFoundContainer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logoContainer img {
+    width: 200px;
+  }
+
+  .logoContainer:focus {
+    outline: none;
+    border: none;
+  }
+
+  .image {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+

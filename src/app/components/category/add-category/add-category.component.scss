@@ -5,3 +5,28 @@ mat-form-field {
 button {
   margin-right: 20px;
 }
+
+.imageIconsContainer {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(8, 1fr);
+
+  .imagePreview {
+    width: 100%;
+    padding: 5px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .imagePreview:hover {
+    cursor: pointer;
+    background-color: rgb(224, 224, 224);
+  }
+}
+
+.active {
+  padding: 5px;
+  border: 2px solid #0177CF;
+}

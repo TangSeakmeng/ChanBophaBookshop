@@ -1,9 +1,10 @@
 @import '../../../../setting.scss';
 
 .navigationHeaderContainer {
-  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   background-color: white;
-  padding: 10px 15%;
+  padding: 0px 20px;
   padding-bottom: 0px;
   overflow: auto;
 
@@ -20,8 +21,8 @@
 
       li:hover {
         cursor: pointer;
-        color: black;
-        background-color: #ECECEC;
+        color: white;
+        background-color: $base-color;;
       }
 
       li:focus {
@@ -29,13 +30,5 @@
         border: none;
       }
     }
-  }
-}
-
-@media only screen and (max-width: 1200px) {
-
-  .navigationHeaderContainer {
-    padding: 10px 8%;
-    padding-bottom: 0px;
   }
 }

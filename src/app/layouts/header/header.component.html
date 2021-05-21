@@ -8,13 +8,13 @@
           <span class="material-icons"> search </span>
         </button> -->
 
-        <mat-form-field appearance="outline" [ngStyle]="{'margin-left': '10px'}">
+        <!-- <mat-form-field appearance="outline" [ngStyle]="{'margin-left': '10px'}">
           <mat-label>Search by</mat-label>
           <mat-select (selectionChange)="onSubCategoryChanged($event)" formControlName="option">
             <mat-option value="Name">Name</mat-option>
             <mat-option value="Category">Category</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field appearance="outline" [ngStyle]="{'margin-left': '10px', 'width': '300px'}">
           <mat-label>{{this.selectedOption ? this.selectedOption : 'Name'}}</mat-label>
@@ -28,10 +28,9 @@
   <div class="rightside-tool">
     <div class="nav-item-link" [matMenuTriggerFor]="userMenu" [ngStyle]="{'z-index': '120'}">
       <div class="avatar">
-        <!-- <img src="https://firebasestorage.googleapis.com/v0/b/sysanotta.appspot.com/o/no_image.svg?alt=media&token=f25af902-6c62-47e6-bdf3-48e3b0c6fe8c"
-            alt="user"> -->
-        <button mat-button [ngStyle]="{'height': '50px'}">
-          <span class="material-icons"> account_circle </span>
+        <button mat-button>
+          <span class="material-icons userIcon"> account_circle </span>
+          <span class="labelUser">Admin</span>
         </button>
       </div>
     </div>

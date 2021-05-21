@@ -7,13 +7,24 @@
       </ng-template>
     </p-fileUpload>
 
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="containerWithSpaceBetween">
       <div>
-        <button mat-raised-button color="accent" style="margin-right: 10px;" mat-dialog-close>Close</button>
-        <button mat-raised-button color="warn" (click)="clearSelectedFiles()">Clear</button>
-      </div>
+        <button mat-raised-button class="buttonWithIcon" type="button" mat-dialog-close
+         style="margin-right: 20px; background-color: #FF033E; color: white;">
+          <mat-icon style="background-color: #ce0231; color: white;">close</mat-icon>
+          <span>Close</span>
+        </button>
 
-      <button mat-raised-button color="primary" (click)="submitUploading()">Upload</button>
+        <button mat-raised-button class="buttonWithIcon" type="button" (click)="clearSelectedFiles()"
+         style="margin-right: 20px; background-color: #F44336; color: white;">
+          <mat-icon style="background-color: #c4372d; color: white;">not_interested</mat-icon>
+          <span>Clear</span>
+        </button>
+      </div>
+      <button mat-raised-button class="navyBlue-button buttonWithIcon" type="button" style="margin-right: 0px;" (click)="submitUploading()">
+        <mat-icon>add</mat-icon>
+        <span>Add Slideshow</span>
+      </button>
     </div>
   </div>
 </mat-dialog-content>

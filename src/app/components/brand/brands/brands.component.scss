@@ -1,3 +1,5 @@
+@import '../../../../setting.scss';
+
 #brandContainer {
   width: 100%;
   padding: 0px 30px;
@@ -14,14 +16,15 @@
 
     button {
       padding-left: 0;
-    }
-
-    button mat-icon {
-      background-color: #123764;
-      padding: 7px;
-      border-radius: 3px;
-      box-sizing: content-box;
-      margin-right: 10px;
+      margin-left: 20px;
+  
+      mat-icon {
+        background-color: darken($color: $base-color, $amount: 10);
+        padding: 7px;
+        border-radius: 3px;
+        box-sizing: content-box;
+        margin-right: 10px;
+      }
     }
   }
 

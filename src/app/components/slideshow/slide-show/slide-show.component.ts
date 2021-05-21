@@ -21,12 +21,11 @@ export class SlideShowComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(AddSlideShowComponent, {
-      width: '600px',
+      width: '750px',
+      height: '96vh',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 
   publishedChanged(event, key) {

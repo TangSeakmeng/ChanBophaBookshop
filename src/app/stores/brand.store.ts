@@ -10,11 +10,15 @@ export class BrandStore {
   @observable public brands = [];
   @observable public brand;
 
+  @observable public loading: boolean = false;
+
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {}
 
   getBrands() {
+    this.loading = true;
     this.afs.collection('brands').valueChanges().subscribe((data) => {
-      this.brands = data
+      this.brands = data;
+      this.loading = false;
     })
   }
 

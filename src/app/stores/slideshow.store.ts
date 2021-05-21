@@ -9,11 +9,15 @@ import { SlideShowImage } from '../models/slideShowImage.model';
 export class SlideShowStore {
   @observable public images = [];
 
+  @observable public loading: boolean = false;
+
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {}
 
   getSlideShowImages() {
+    this.loading = true;
     this.afs.collection('slideshow').valueChanges().subscribe((data) => {
-      this.images = data
+      this.images = data;
+      this.loading = false;
     })
   }
 

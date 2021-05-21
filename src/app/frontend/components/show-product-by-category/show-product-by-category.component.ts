@@ -29,3 +29,4 @@ export class ShowProductByCategoryComponent implements OnInit {
     pagination: true
   };
 }
+

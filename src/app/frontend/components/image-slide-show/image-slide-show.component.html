@@ -1,25 +1,10 @@
 <div class="imageSlideShowContainer">
   <div class="slideShow">
 
-    <!-- <div  class="swiper-container" [swiper]="config">
-      <div class="swiper-wrapper">
-
-        <div *ngFor="let item of this.slideShowStore.images" class="swiper-slide">
-          <div class="imageContainer">
-            <img src="{{ item.image }}">
-          </div>
-        </div>
-
-      </div>
-
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div> -->
-
     <swiper [config]="config">
       <div *ngFor="let item of this.slideShowStore.images">
         <div class="imageContainer">
-          <img src="{{ item.image }}">
+          <img [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="item.image" />
         </div>
       </div>
     </swiper>

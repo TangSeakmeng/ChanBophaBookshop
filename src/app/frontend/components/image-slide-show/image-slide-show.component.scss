@@ -1,5 +1,6 @@
 .imageSlideShowContainer {
   width: 100%;
+  overflow: hidden;
 
   .slideShow {
 
@@ -8,6 +9,7 @@
       .imageContainer {
         width: 100%;
         height: 420px;
+        overflow: hidden;
 
         img {
           width: 100%;
@@ -15,6 +17,14 @@
           object-fit: cover;
         }
       }
+
+      .imageContainer::-webkit-scrollbar {
+        width: 0px;
+      }
     }
   }
+}
+
+.imageSlideShowContainer::-webkit-scrollbar {
+  width: 0px;
 }

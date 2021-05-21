@@ -35,17 +35,27 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.productStore.getProducts();
-    this.productStore.fetchDataFireUser(null, null);
+    this.productStore.fetchData(null, null);
     this.subCategoryStore.getCategories();
   }
 
   OpenAddProductDialog() {
-    this.dialog.open(AddProductComponent);
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      width: '750px',
+      height: '96vh',
+    });
+
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 
   editProduct(product) {
-    this.dialog.open(EditProductComponent, { width: '1000px', data: product });
+    const dialogRef = this.dialog.open(EditProductComponent, {
+      width: '750px',
+      height: '96vh',
+      data: product
+    });
+
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 
   deleteProduct(product) {
@@ -83,7 +93,7 @@ export class ProductsComponent implements OnInit {
 
   scrollHandler(e) {
     if (e === 'bottom') {
-      this.productStore.fetchDataFireUserMore()
+      this.productStore.fetchDataMore()
     }
   }
 

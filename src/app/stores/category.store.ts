@@ -16,12 +16,16 @@ export class CategoryStore {
   @observable public categories_6_elements = [];
   @observable public ProductsByCategory = [];
 
-  constructor(private afs: AngularFirestore, private storage: AngularFireStorage) {}
+  @observable loading = false;
+
+  constructor(private afs: AngularFirestore) {}
 
   @action
   getCategories() {
+    this.loading = true;
     this.afs.collection('categories').valueChanges().subscribe((data) => {
-      this.categories = data
+      this.categories = data;
+      this.loading = false;
     })
   }
 
@@ -58,7 +62,7 @@ export class CategoryStore {
       // })
 
       this.categories_2.forEach((each_category) => {
-        this.afs.collection('products', ref => ref.where('category.subcategory.key', '==', each_category.key).where('published', '==', true).limit(9)).valueChanges().subscribe((data2) => {
+        this.afs.collection('products', ref => ref.where('category.subcategory.key', '==', each_category.key).where('published', '==', true).limit(8)).valueChanges().subscribe((data2) => {
           this.ProductsByCategory.push({
             key : each_category,
             value: data2

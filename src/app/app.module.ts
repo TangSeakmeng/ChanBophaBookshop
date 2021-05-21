@@ -12,6 +12,11 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
+import { EditorModule } from 'primeng/editor';
+import { SkeletonModule } from 'primeng/skeleton';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ColorPickerModule } from 'ngx-color-picker';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
@@ -25,9 +30,6 @@ import { CategoriesComponent } from './components/category/categories/categories
 import { EditCategoryComponent } from './components/category/edit-category/edit-category.component';
 import { AddProductComponent } from './components/product/add-product/add-product.component';
 import { ProductsComponent } from './components/product/products/products.component';
-import { EditorModule } from 'primeng/editor';
-import { FileUploadModule } from 'primeng/fileupload';
-import { ColorPickerModule } from 'ngx-color-picker';
 import { EditProductComponent } from './components/product/edit-product/edit-product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewProductComponent } from './components/product/view-product/view-product.component';
@@ -74,6 +76,19 @@ import { FacebookModule } from 'ngx-facebook';
 import { ScrollableDirective } from './directive/scrollable.directive';
 import { SlideShowComponent } from './components/slideshow/slide-show/slide-show.component';
 import { AddSlideShowComponent } from './components/slideshow/add-slide-show/add-slide-show.component';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { AddIconPackageComponent } from './components/category/add-icon-package/add-icon-package.component';
+import { FateMenuDialogComponent } from './frontend/components/fate-menu-dialog/fate-menu-dialog.component';
+import { FateMenuDialog2Component } from './frontend/components/fate-menu-dialog2/fate-menu-dialog2.component';
+import { NgPipesModule } from 'ngx-pipes';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ListingAllProductsComponent } from './frontend/components/listing-all-products/listing-all-products.component';
+
+export function playerFactory() {
+  return player;
+}
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -130,7 +145,12 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FrontendNavigation2Component,
     ScrollableDirective,
     SlideShowComponent,
-    AddSlideShowComponent
+    AddSlideShowComponent,
+    PageNotFoundComponent,
+    AddIconPackageComponent,
+    FateMenuDialogComponent,
+    FateMenuDialog2Component,
+    ListingAllProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -150,15 +170,18 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 
     EditorModule,
     FileUploadModule,
+    SkeletonModule,
     ColorPickerModule,
     HttpClientModule,
     CommonModule,
     SwiperModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAytC_TusuhG7kpNQ19hMrCzXDIUjd307o'
+      apiKey: 'AIzaSyDPMV9gA-dyAAb2J-N43BV36AAEAIyf4Fs'
     }),
     FacebookModule.forRoot(),
-
+    LottieModule.forRoot({ player: playerFactory }),
+    NgPipesModule,
+    LazyLoadImageModule
   ],
   providers: [
     {

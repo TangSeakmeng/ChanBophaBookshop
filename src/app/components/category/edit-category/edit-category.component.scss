@@ -1,3 +1,27 @@
 mat-form-field {
   width: 100%;
 }
+
+.imageIconsContainer {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(8, 1fr);
+
+  .imagePreview {
+    width: 100%;
+    padding: 5px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .imagePreview:hover {
+    cursor: pointer;
+    background-color: rgb(224, 224, 224);
+  }
+}
+
+.active {
+  background-color: rgb(224, 224, 224);
+}

@@ -1,6 +1,5 @@
 .productsByCategoryContainer {
   overflow-y: auto;
-  margin-bottom: 20px;
 
   .container {
     margin-bottom: 20px;
@@ -11,65 +10,58 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid #0177CF;
+      margin-bottom: 10px;
+      color: #0177CF;
 
       h1 {
         font-weight: bold;
-        color: #333333;
-      }
-
-      h4 {
-        margin: 0;
-      }
-
-      h4:hover {
-        font-weight: bold;
-        cursor: pointer;
-        color: cornflowerblue;
-      }
-
-      h4:focus {
-        outline: none;
-        border: none;
+        color: #0177CF;
       }
     }
 
     .productsContainer {
       width: 100%;
       background-color: white;
-      display: flex;
-      overflow-x: scroll;
-      overflow-y: auto;
-      padding: 10px 0px;
 
-      .productContainer {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: repeat(5, 1fr);
+      
+      // display: flex;
+      // overflow-x: scroll;
+
+      .productContainer_element {
         transition: 0.5s;
-        width: 220px;
+        width: 100%;
         height: 300px;
         text-align: center;
-        padding: 0px 20px;
+        padding: 20px;
         margin-left: 5px;
+        overflow: hidden;
 
-        .imageContainer {
-          width: 200px;
-          height: 200px;
-          margin: 0 auto;
-        }
+        .productContainer {
+          margin-top: 20px !important;
+          margin-bottom: 20px !important;
 
-        img {
-          padding-right: 20px;
-          padding-top: 20px;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+          .imageContainer {
+            width: 100%;
+            height: 200px;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: white;
 
-        p {
-          margin-top: 20px;
-          width: 100%;
-        }
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
 
-        button {
-          margin-top: 30px;
+          p {
+            margin-top: 20px;
+            width: 100%;
+          }
         }
       }
 
@@ -81,40 +73,45 @@
       .productContainer:hover {
         transition: 0.5s;
         cursor: pointer;
-        color: cornflowerblue;
+        color: #0177CF;
         box-shadow: 0px 0px 2px #f0f0f0;
         border-radius: 5px;
-        background-color: #F4F4F4;
       }
 
       .productContainer_last_child {
         background-color: #F4F4F4;
         transition: 0.5s;
-        width: 220px;
+        width: 100%;
         height: 300px;
         text-align: center;
-        padding: 0px 20px;
+        padding: 20px;
         margin-left: 5px;
         border-radius: 5px;
 
         .imagesContainer {
-          width: 200px;
+          width: 100%;
           height: 200px;
           margin: 0 auto;
 
           img {
-            padding-right: 20px;
-            padding-top: 20px;
+            padding-left: 10px;
+            padding-top: 10px;
             width: 50%;
             height: 100px;
             object-fit: cover;
             float: left;
           }
+
+          img:first-child {
+            padding-left: 0px;
+          }
         }
 
         .textContainer {
+          clear: both;
+          float: none;
           text-align: left;
-          margin-top: 30px;
+          color: #0177CF;
         }
       }
 
@@ -134,3 +131,38 @@
     display: none;
   }
 }
+
+@media only screen and (max-width: 1300px) {
+
+  .productsContainer {
+    grid-template-columns: repeat(4, 1fr) !important;
+
+    .productContainer_element3 {
+      display: none !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 850px) {
+
+  .productsContainer {
+    grid-template-columns: repeat(3, 1fr) !important;
+
+    .productContainer_element2 {
+      display: none !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .productsContainer {
+    grid-template-columns: repeat(2, 1fr) !important;
+    text-align: center;
+
+    .productContainer_element2, .productContainer_element3 {
+      display: block !important;
+    }
+  }
+}
+

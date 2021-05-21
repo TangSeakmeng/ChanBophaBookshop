@@ -24,7 +24,13 @@ export class ViewProductComponent implements OnInit {
   }
 
   openEditProductDialog() {
-    this.dialog.open(EditProductComponent, { width: '1000px', data: this.productStore.product });
+    const dialogRef = this.dialog.open(EditProductComponent, {
+      width: '750px',
+      height: '96vh',
+      data: this.productStore.product
+    });
+
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 
   deleteProduct() {

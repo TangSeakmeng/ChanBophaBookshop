@@ -17,6 +17,13 @@
     <h1>{{this.productStore.product?.name}}</h1>
     <p [innerHTML]="this.productStore.product?.description" [ngStyle]="{'width': '100%', 'margin-top': '20px', 'line-height': '25px'}"></p>
 
+    <div class="linksContainer">
+      <p>Category: <span [routerLink]="['/subcategory/' + this.productStore.product?.category?.key]">{{ this.productStore.product?.category?.name }}</span></p>
+      <p>Brand: <span>{{ this.productStore.product?.brand?.name }}</span></p>
+
+      <!-- [routerLink]="['/subcategory/' + this.productStore.product?.brand?.key]" -->
+    </div>
+
     <h4>Color:</h4>
     <div class="colorLabelContainer">
       <ng-container *ngIf="this.productColorStore.productColors.length == 0">

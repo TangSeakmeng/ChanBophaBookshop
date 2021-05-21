@@ -15,6 +15,7 @@
 
             <div class="subNavElements">
               <ul>
+                
                 <ng-container *ngFor="let jtem of this.subCategoryStore.subCategories">
                   <li class="subNavElement"  *ngIf="jtem.subcategory.name == item.name" [routerLink]="['/subcategory/' + jtem.key]">
                     <p>{{jtem.name}}</p>

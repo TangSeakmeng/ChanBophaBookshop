@@ -1,13 +1,40 @@
-<form [formGroup]="editCategoryForm" class="addCategoryForm" (ngSubmit)="onSubmit(editCategoryForm.value)">
-  <h1>Edit Category</h1>
+<h1 mat-dialog-title>Edit Category</h1>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="editCategoryForm" class="addCategoryForm" (ngSubmit)="onSubmit(editCategoryForm.value)">
+    <mat-form-field appearance="outline" id="txtName">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="name" type="text" required>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" id="txtName">
-    <mat-label>Name</mat-label>
-    <input matInput placeholder="Name" formControlName="name" type="text" required>
-  </mat-form-field>
+    <mat-label>Upload Icon</mat-label><br>
+    <img src="{{ this.categoryData.icon.image }}" [ngStyle]="{'width': '100px', 'margin-top': '20px', 'margin-bottom': '20px'}">
 
-  <div class="containerWithSpaceBetween">
-    <button mat-flat-button [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}" type="button" mat-dialog-close type="button">Close</button>
-    <button mat-flat-button color="primary" type="submit" [ngStyle]="{'margin': '0px'}">Edit Category</button>
-  </div>
-</form>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Icon Package</mat-label>
+      <mat-select (selectionChange)="selectIconPackageChanged($event)" [compareWith]="compareFn" [(value)]="this.iconPackagetStore.iconPackage">
+        <ng-container *ngFor="let item of this.iconPackagetStore.iconPackages; let i = index;">
+          <mat-option [value]="item">{{ item.name }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="imageIconsContainer">
+      <div *ngFor="let item of this.iconPackagetStore.iconPackageImages" class="imagePreview" (click)="selectImageChanged(item)">
+        <img src="{{ item.image }}" [class.active]="this.selectedImage?.key == item.key">
+      </div>
+    </div>
+
+    <div class="containerWithSpaceBetween">
+      <button mat-raised-button class="buttonWithIcon" type="button" mat-dialog-close
+           style="margin-right: 20px; margin-top: 20px; background-color: #FF033E; color: white;">
+            <mat-icon style="background-color: #ce0231; color: white;">close</mat-icon>
+            <span>Close</span>
+          </button>
+
+      <button mat-raised-button class="navyBlue-button buttonWithIcon" type="submit" style="margin-right: 0px; margin-top: 20px;">
+        <mat-icon>save</mat-icon>
+        <span>Save</span>
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -2,8 +2,17 @@
   <div class="header">
     <h1>Product Details</h1>
     <div class="header__buttons">
-      <button mat-raised-button color="primary" (click)="openEditProductDialog()">Edit</button>
-      <button mat-raised-button color="warn" (click)="deleteProduct()">Delete</button>
+
+      <button mat-raised-button class="navyBlue-button buttonWithIcon" (click)="openEditProductDialog()">
+        <mat-icon>edit</mat-icon>
+        <span>Edit Product</span>
+      </button>
+
+      <button mat-raised-button class="buttonWithIcon" (click)="deleteProduct()"
+        style="margin-right: 20px; background-color: #F44336; color: white;">
+        <mat-icon style="background-color: #c4372d; color: white;">delete</mat-icon>
+        <span>Delete Product</span>
+      </button>
     </div>
   </div>
 

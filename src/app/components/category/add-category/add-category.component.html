@@ -1,38 +1,63 @@
-<form [formGroup]="addCategoryForm" class="addCategoryForm" (ngSubmit)="onSubmit(addCategoryForm.value)">
-  <h1>Add Category</h1>
+<h1 mat-dialog-title>Add Category</h1>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="addCategoryForm" class="addCategoryForm" (ngSubmit)="onSubmit(addCategoryForm.value)">
+    <mat-form-field appearance="outline" id="txtName">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="name" type="text" required>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" id="txtName">
-    <mat-label>Name</mat-label>
-    <input matInput placeholder="Name" formControlName="name" type="text" required>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Icon Package</mat-label>
+      <mat-select (selectionChange)="selectIconPackageChanged($event)" [compareWith]="compareFn" [(value)]="this.iconPackagetStore.iconPackage">
+        <ng-container *ngFor="let item of this.iconPackagetStore.iconPackages; let i = index;">
+          <mat-option [value]="item">{{ item.name }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
 
-  <!-- <mat-checkbox class="example-margin" (change)="checkedSubCategoryChanged($event.checked)">SubCategory</mat-checkbox><br/><br/>
+    <div class="imageIconsContainer">
+      <div *ngFor="let item of this.iconPackagetStore.iconPackageImages" class="imagePreview" (click)="selectImageChanged(item)" 
+      [class.active]="this.selectedImage?.key == item.key">
+        <img src="{{ item.image }}">
+      </div>
+    </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Select</mat-label>
-    <mat-select
-    [disabled]="disabledSubCategory"
-    (selectionChange)="onSubCategoryChanged($event)"
-    formControlName="subcategory">
-      <mat-option *ngFor="let item of categoryStore.categories;" [value]="this.categoryMapping.MapCategoryObj(item)">{{item.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <!-- <mat-checkbox class="example-margin" (change)="checkedSubCategoryChanged($event.checked)">SubCategory</mat-checkbox><br/><br/>
 
-  <mat-checkbox class="example-margin" (change)="checkedSubSubCategoryChanged($event.checked)" [disabled]="disabledSubCategory">More SubCategory</mat-checkbox><br/><br/>
+    <mat-form-field appearance="outline">
+      <mat-label>Select</mat-label>
+      <mat-select
+      [disabled]="disabledSubCategory"
+      (selectionChange)="onSubCategoryChanged($event)"
+      formControlName="subcategory">
+        <mat-option *ngFor="let item of categoryStore.categories;" [value]="this.categoryMapping.MapCategoryObj(item)">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Select</mat-label>
-    <mat-select
-    [disabled]="disabledSubSubCategory"
-    formControlName="subsubcategory">
-      <ng-container *ngFor="let item of this.tempSubCategories">
-        <mat-option [value]="this.categoryMapping.MapCategoryObj(item)">{{item.name}}</mat-option>
-      </ng-container>
-    </mat-select>
-  </mat-form-field> -->
+    <mat-checkbox class="example-margin" (change)="checkedSubSubCategoryChanged($event.checked)" [disabled]="disabledSubCategory">More SubCategory</mat-checkbox><br/><br/>
 
-  <div class="containerWithSpaceBetween">
-    <button mat-flat-button [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}" type="button" mat-dialog-close type="button">Close</button>
-    <button mat-flat-button color="primary" type="submit" [ngStyle]="{'margin': '0px'}">Add</button>
-  </div>
-</form>
+    <mat-form-field appearance="outline">
+      <mat-label>Select</mat-label>
+      <mat-select
+      [disabled]="disabledSubSubCategory"
+      formControlName="subsubcategory">
+        <ng-container *ngFor="let item of this.tempSubCategories">
+          <mat-option [value]="this.categoryMapping.MapCategoryObj(item)">{{item.name}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field> -->
+
+    <div class="containerWithSpaceBetween">
+      <button mat-raised-button class="buttonWithIcon" type="button" mat-dialog-close
+        style="margin-right: 20px; margin-top: 20px; background-color: #FF033E; color: white;">
+        <mat-icon style="background-color: #ce0231; color: white;">close</mat-icon>
+        <span>Close</span>
+      </button>
+
+      <button mat-raised-button class="navyBlue-button buttonWithIcon" type="submit" style="margin-right: 0px; margin-top: 20px;">
+        <mat-icon>add</mat-icon>
+        <span>Add Product</span>
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -8,8 +8,13 @@
   <div class="mapContainer">
     <h1>{{ title }}</h1>
 
-    <agm-map [latitude]="lat" [longitude]="lng">
+    <!-- <agm-map [latitude]="lat" [longitude]="lng">
       <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    </agm-map>
+    </agm-map> -->
+
+    <div class="googleMapContainer">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7818.051765658432!2d104.93509217645841!3d11.550000978798854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310956d330da8527%3A0x7eff3ca8d12ecc0f!2sKoh%20Pich!5e0!3m2!1sen!2skh!4v1620905485589!5m2!1sen!2skh" 
+      height="450" style="border:0;" allowfullscreen="" loading="lazy" class="googleMap"></iframe>
+    </div>
   </div>
 </div>

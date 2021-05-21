@@ -1,0 +1,16 @@
+<div mat-dialog-content style="max-height: 100vh; overflow: auto;">
+  <div class="headerDialog">
+    <img src="/assets/images/icons/cancel 2.png" (click)="onNoClick()">
+  </div>
+
+  <div class="headerDialog_search">
+    <input type="text" [(ngModel)]="keyword" placeholder="search">
+    <span class="material-icons" id="searchButton" (click)="searchProduct()">search</span>
+  </div>
+
+  <div class="categoryContainer">
+    <div>
+      <p *ngFor="let item of this.categoryStore.categories" (click)="openSubcategoryDialog(item)">{{ item.name }}</p>
+    </div>
+  </div>
+</div>

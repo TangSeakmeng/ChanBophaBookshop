@@ -22,4 +22,22 @@
   .leftside-tool {
     display: flex;
   }
+
+  .rightside-tool {
+    .avatar {
+      button {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+
+        .userIcon {
+          font-size: 34px;
+        } 
+
+        .labelUser {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
 }

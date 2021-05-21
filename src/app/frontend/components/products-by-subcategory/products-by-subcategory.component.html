@@ -1,17 +1,16 @@
-<div class="productsContainer">
-  <ng-container *ngIf="this.productStore.products.length > 0">
-    <div *ngFor="let item of this.productStore.products">
-      <div class="productContainer" [routerLink]="['/product/' + item.key]">
-        <div>
-          <div class="imageContainer">
-            <img src="{{item.images[0].image}}">
-          </div>
-          <p>{{item.name}}</p>
-        </div>
-      </div>
+<div class="productsContainer" *ngIf="this.productStore.data.length > 0">
+  <!-- scrollable (scrollPosition)="scrollHandler($event)" -->
+  <div *ngFor="let item of this.productStore.data" class="productContainer" [routerLink]="['/product/' + item.key]">
+    <div class="imageContainer">
+      <img [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="item.images[0].image"/>
     </div>
-  </ng-container>
-  <ng-container *ngIf="this.productStore.products.length == 0">
-    No Products Found.
-  </ng-container>
+    <p>{{item.name | shorten: 40: '...'}}</p>
+  </div>
+</div>
+
+<button class="btnViewMore" (click)="this.productStore.fetchDataFireUserMore()">View More</button>
+
+<div class="noProductContainer" *ngIf="this.productStore.data.length == 0">
+  <img [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="'/assets/images/icons/empty.jpg'"/>
+  <p>No Product Found.</p>
 </div>

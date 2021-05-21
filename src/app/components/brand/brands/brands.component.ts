@@ -24,11 +24,22 @@ export class BrandsComponent implements OnInit {
   }
 
   OpenAddBrandDialog() {
-    this.dialog.open(AddBrandComponent);
+    const dialogRef = this.dialog.open(AddBrandComponent, {
+      width: '750px',
+      height: '96vh',
+    });
+
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 
   editBrand(brand: Brand) {
-    this.dialog.open(EditBrandComponent, { data: { ...brand } });
+    const dialogRef = this.dialog.open(EditBrandComponent, {
+      width: '750px',
+      height: '96vh',
+      data: brand
+    });
+
+    dialogRef.updatePosition({ 'top': '2vh', 'right': '2vh' });
   }
 
   deleteBrand(brand) {

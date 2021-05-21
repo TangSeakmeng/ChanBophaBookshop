@@ -1,7 +1,11 @@
 .homeContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0px 20px;
+
   clear: both;
+  float: none;
   background-color: #F2F2F2;
-  padding: 0px 15%;
 
   .nav_AdvertisementContainer {
     width: 100%;
@@ -9,8 +13,8 @@
     padding: 20px;
     padding-bottom: 0px;
     background-color: white;
-    margin-bottom: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
 
     .navContainer {
       width: 250px;
@@ -24,9 +28,21 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 850px) {
 
-  .homeContainer {
-    padding: 0px 8%;
+  .nav_AdvertisementContainer {
+    display: none !important;
+
+    .navContainer {
+      display: none;
+    }
+
+    .advertisementContainer {
+      display: none;
+    }
+  }
+
+  .showProductByCategory {
+    margin-top: 20px;
   }
 }

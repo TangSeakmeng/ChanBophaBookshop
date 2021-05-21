@@ -15,7 +15,22 @@
   <input type="file" (change)="uploadFileChange($event)"><br><br>
 
   <div class="containerWithSpaceBetween">
-    <button mat-flat-button [ngStyle]="{'background-color': '#FF033E', 'color': 'white'}" type="button" mat-dialog-close type="button">Close</button>
-    <button mat-flat-button color="primary" type="submit" [ngStyle]="{'margin': '0px'}">Save</button>
+    <div>
+      <button mat-raised-button class="buttonWithIcon" type="button" mat-dialog-close
+       style="margin-right: 20px; background-color: #FF033E; color: white;">
+        <mat-icon style="background-color: #ce0231; color: white;">close</mat-icon>
+        <span>Close</span>
+      </button>
+
+      <button mat-raised-button class="buttonWithIcon" type="reset"
+       style="margin-right: 20px; background-color: #F44336; color: white;">
+        <mat-icon style="background-color: #c4372d; color: white;">not_interested</mat-icon>
+        <span>Clear</span>
+      </button>
+    </div>
+    <button mat-raised-button class="navyBlue-button buttonWithIcon" type="submit" style="margin-right: 0px;">
+      <mat-icon>save</mat-icon>
+      <span>Save</span>
+    </button>
   </div>
 </form>

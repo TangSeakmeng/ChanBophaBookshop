@@ -1,17 +1,35 @@
 <div id="slideShowContainer">
   <div class="slideShowHeader">
-    <h1>Slide Show</h1>
-    <button mat-raised-button color="primary" (click)="openDialog()">Add Slide Show</button>
+    <h1>Slideshow</h1>
+
+    <button mat-raised-button class="navyBlue-button buttonWithIcon" (click)="openDialog()">
+      <mat-icon>image</mat-icon>
+      <span>Add Slideshow</span>
+    </button>
   </div>
 
-  <div class="slideShowImagesContainer">
+  <div style="padding: 20px 0px !important;" *ngIf="this.slideShowStore.loading" style="margin-top: 20px;">
+    <ng-container>
+      <p-skeleton styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="5rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton height="2rem" styleClass="p-mb-2"></p-skeleton> <br>
+      <p-skeleton width="10rem" height="4rem"></p-skeleton>
+    </ng-container>
+  </div>
+
+  <div class="slideShowImagesContainer" *ngIf="!this.slideShowStore.loading">
     <div *ngFor="let item of this.slideShowStore.images" class="slideShowImageContainer">
       <div class="imageContainer">
-        <img src="{{ item.image }}">
+        <img *ngIf="!item.image" [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="'./assets/images/icons/no image.png'" />
+        <img *ngIf="item.image" [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="item.image"/>
       </div>
       <div class="actionButtons">
         <mat-checkbox class="example-margin" (change)="publishedChanged($event, item.key)" [checked]="item.published">Published</mat-checkbox>
-        <button mat-raised-button color="warn" (click)="deleteSlideShowImage(item)">Delete</button>
+        <button mat-raised-button class="navyBlue-button buttonWithIcon" (click)="deleteSlideShowImage(item)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
       </div>
     </div>
   </div>

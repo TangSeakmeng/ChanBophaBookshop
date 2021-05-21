@@ -1,0 +1,20 @@
+<div mat-dialog-content style="max-height: 100vh; overflow: auto;">
+  <div class="headerDialog">
+    <img src="/assets/images/icons/cancel 2.png" (click)="onNoClick()">
+  </div>
+
+  <div class="headerDialog_search">
+    <input type="text" [(ngModel)]="keyword" placeholder="search">
+    <span class="material-icons" id="searchButton" (click)="searchProduct()">search</span>
+  </div>
+
+  <div class="categoryContainer">
+    <div>
+      <p *ngFor="let item of this.subCategoryStore.subCategories" (click)="linkToSubcategoryProducts(item)">
+        <ng-container *ngIf="item.subcategory.key == this.data.item.key">
+          {{ item.name }}
+        </ng-container>
+      </p>
+    </div>
+  </div>
+</div>

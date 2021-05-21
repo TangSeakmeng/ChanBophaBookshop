@@ -44,6 +44,7 @@ export class ProductsByCategoryComponent implements OnInit {
 
         this.subCategoryStore.getCategoryByKey(id);
         this.selectedCategory = this.subCategoryStore.subCategory;
+        this.subCategoryStore.getCategories();
         this.productStore.getProductByCategoryKey(id);
       } else {
         this.subCategoryStore.getCategories();

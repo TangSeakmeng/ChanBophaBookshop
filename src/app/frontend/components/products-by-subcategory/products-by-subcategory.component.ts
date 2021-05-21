@@ -17,12 +17,19 @@ export class ProductsBySubcategoryComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(param => {
       if(param.id != undefined) {
-        this.productStore.getProductByCategoryKey(param.id);
+        // this.productStore.getProductByCategoryKey(param.id);
+        this.productStore.fetchDataFireUser(null, param.id);
       }
       else {
-        this.productStore.searchProductByName(param.keyword);
+        this.productStore.fetchDataFireUser(param.keyword, null);
+        // this.productStore.searchProductByName(param.keyword);
       }
     });
   }
 
+  scrollHandler(e) {
+    if (e === 'bottom') {
+      this.productStore.fetchDataFireUserMore()
+    }
+  }
 }

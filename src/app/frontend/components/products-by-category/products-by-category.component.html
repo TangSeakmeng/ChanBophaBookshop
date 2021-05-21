@@ -2,7 +2,7 @@
   <ng-container *ngFor="let item of this.productStore.products">
     <div class="productContainer" [routerLink]="['/product/' + item.key]">
       <div class="imageContainer">
-        <img src="{{item.images[0].image}}">
+        <img [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="item.images[0].image" [ngStyle]="{'height': '38px'}" />
       </div>
       <p>{{item.name}}</p>
     </div>

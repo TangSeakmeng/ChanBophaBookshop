@@ -1,0 +1,21 @@
+<div class="listingAllProductsContainer_parent">
+    <div class="listingHeaderContainer">
+        <h1>All Products</h1>
+    </div>
+
+    <div class="listingAllProductsContainer">
+        <div class="productContainer_element" *ngFor="let item of this.productStore.data">
+            <div [routerLink]="['/product/' + item.key]" class="productContainer">
+    
+              <div class="imageContainer">
+                <img [defaultImage]="'./assets/images/icons/loading.gif'" [lazyLoad]="item.images[0].image"/>
+              </div>
+              
+              <p>{{item.name | shorten: 40: '...'}}</p>
+    
+            </div>
+        </div>
+    </div>  
+
+    <button class="btnViewMore" (click)="btnViewMore()">View More</button>
+</div>
